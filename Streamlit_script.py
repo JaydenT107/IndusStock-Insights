@@ -1,6 +1,3 @@
-
-
-
 import boto3
 import pandas as pd
 from io import StringIO
@@ -11,17 +8,11 @@ def get_date():
   response = s3.get_object(Bucket = 'stocksectordata' , Key = 'sector_list.txt')
   sector_string = response['Body'].read().decode('utf-8')
   
-  
   sector_list = sector_string.split(', ')
   print(sector_list)
   
-  
-  
   data_response = s3.get_object(Bucket = 'stocksectordata', Key = f'{sector_list[0]}/Data/stock_1.csv')
   data = data_response['Body'].read().decode('utf-8')
-  
-  
-  
   
   df = pd.read_csv(StringIO(data))
 
