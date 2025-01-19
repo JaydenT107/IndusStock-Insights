@@ -1,3 +1,3 @@
-##These are dependencies need to be installed on aws lambda
-pip install openai --only-binary=:all: --upgrade --platform manylinux2014_x86_64 --python-version 3.12
-pip install requests
+boto3
+pandas
+streamlit
