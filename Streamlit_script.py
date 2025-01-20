@@ -21,7 +21,9 @@ def get_date():
   data = data_response['Body'].read().decode('utf-8')
   
   df = pd.read_csv(StringIO(data))
+  return df
 
+st.dataFrame(get_data())
 
 
 
