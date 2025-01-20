@@ -20,7 +20,7 @@ def get_data():
   data = data_response['Body'].read().decode('utf-8')
   
   df = pd.read_csv(StringIO(data))
-  return df
+  return df.head(2)
 
 
 st.dataframe(get_data())
