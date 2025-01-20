@@ -18,4 +18,4 @@ jobs:                  # Root key: jobs definition
 
       - name: Deploy Streamlit App
         run: |
-          streamlit run app.py
+          streamlit run Streamlit_script.py
