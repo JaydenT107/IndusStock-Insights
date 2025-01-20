@@ -23,7 +23,7 @@ def get_data():
   return df.head(2)
 
 
-st.dataframe(get_data())
+st.write(get_data())
 
 
 
