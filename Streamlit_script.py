@@ -23,7 +23,7 @@ def get_date():
   df = pd.read_csv(StringIO(data))
   return df
 
-st.dataFrame(get_data())
+st.dataframe(get_data())
 
 
 
