@@ -24,7 +24,12 @@ def get_data():
   return df
 
 
-st.dataframe(get_data())
+aws_access_key = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+
+if not aws_access_key or not aws_secret_key:
+    st.error("AWS credentials are missing. Please set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.")
+    return
 
 
 
