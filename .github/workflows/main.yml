@@ -1,8 +1,21 @@
-name: Set AWS Credentials
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  
-name: Deploy Streamlit App
-run: |
-  streamlit run Streamlit_script.py
+name: My Workflow Name  # Root key: workflow name
+on:                    # Root key: event triggers
+  push:
+    branches:
+      - main
+jobs:                  # Root key: jobs definition
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: echo "AWS credentials are set."
+
+      - name: Deploy Streamlit App
+        run: |
+          streamlit run app.py
