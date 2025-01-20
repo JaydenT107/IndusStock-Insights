@@ -1,18 +1,20 @@
-name: My Workflow Name  # Root key: workflow name
-on:                    # Root key: event triggers
+name: Deploy Streamlit App  # Workflow name
+on:                        # Event that triggers the workflow
   push:
     branches:
-      - main
-jobs:                  # Root key: jobs definition
-  deploy:
-    runs-on: ubuntu-latest
+      - main               # Runs when changes are pushed to the "main" branch
+jobs:
+  deploy:                  # Define a job named "deploy"
+    runs-on: ubuntu-latest # Specify the runner environment
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Check out the repository code
 
       - name: Set AWS Credentials
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: echo "AWS credentials are set."
+
+
 
