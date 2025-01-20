@@ -16,6 +16,3 @@ jobs:                  # Root key: jobs definition
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: echo "AWS credentials are set."
 
-      - name: Deploy Streamlit App
-        run: |
-          streamlit run Streamlit_script.py
