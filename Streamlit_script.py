@@ -23,6 +23,7 @@ def get_data():
   df = pd.read_csv(StringIO(data))
   return df
 
+
 st.dataframe(get_data())
 
 
