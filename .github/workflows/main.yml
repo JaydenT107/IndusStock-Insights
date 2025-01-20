@@ -6,22 +6,19 @@ on:
       - main
 
 jobs:
- check-access:
-   runs-on: ubuntu-latest
+  check-access:
+    runs-on: ubuntu-latest
 
-   steps:
-   - name: Checkout code
-     uses: action/checkout@v3
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Correct action to checkout code
 
-   - name: Configure AWS credentials
-   - uses: aws-action/configure-aws-credential@v2
-     with:
-       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       aws-region: 'us=east-2'
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2  # Correct action to configure AWS credentials
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: 'us-east-2'  # Correct AWS region
 
-   - name: Verify AWS credentials
-     run: aws sts get-caller-identity
-
-
-
+    - name: Verify AWS credentials
+      run: aws sts get-caller-identity  # Verifies that the credentials are working
