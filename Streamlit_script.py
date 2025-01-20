@@ -4,7 +4,7 @@ from io import StringIO
 import streamlit as st
 import os
 
-st.set_page_config(page_title="Top 5 Stock", layout="wide")
+st.set_page_config(page_title="Top 5 Stocks", layout="wide")
 
 def get_data():
   aws_access_key = os.getenv("AWS_ACCESS_KEY_ID")
