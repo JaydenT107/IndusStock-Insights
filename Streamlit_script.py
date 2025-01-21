@@ -27,7 +27,7 @@ def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
         return 'red'
     elif data.iloc[0]['Close'] < data.iloc[-1]['Close']:
-        return 'green'
+        return 'bright lime green'
     elif data.iloc[0]['Close'] == data.iloc[-1]['Close']:
         return 'yellow'
     
