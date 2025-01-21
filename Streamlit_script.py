@@ -17,19 +17,23 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    
+    sector = st.selectbox('Select Industry', sector_list.unique())
+  
     tables = []
     names = []
     for num in range(1,6):
-        data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
+        data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
-        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}_name.txt')
+        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Name/stock_{num}_name.txt')
         name = name_response['Body'].read().decode('utf-8')
        
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names,sector_list]
+    return [tables,names]
+
+
+
 
 def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
@@ -57,8 +61,8 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    data,name,sector_list = get_data()
-    category = st.selectbox('Select Industry', sector_list.unique())
+    data,name = data_name
+    
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
