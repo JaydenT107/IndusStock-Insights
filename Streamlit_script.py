@@ -47,6 +47,6 @@ def line_chart(data):
 def generate_chart():
     data = get_data()
     for i in range(0,4):
-        return line_chart(data[i].head(30))
+        line_chart(data[i].head(30))
 
 generate_chart()
