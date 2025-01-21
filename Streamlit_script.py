@@ -24,7 +24,7 @@ def get_data():
     return df
     
 data = get_data()
-fig = px.line(data, 'x','y')
+fig = px.line(data, 'Date','Close')
 close_min = data['Close'].min()
 close_max = data['Close'].max()
 fig.update_yaxes(range=[close_min,close_max])
