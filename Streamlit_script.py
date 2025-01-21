@@ -19,6 +19,7 @@ def get_data():
     sector_list = sector_string.split(', ')
 
     sector = st.sidebar.selectbox('Select Industry', set(sector_list))
+    st.sidebar.write(f'You selected: {sector}')
   
     tables = []
     names = []
