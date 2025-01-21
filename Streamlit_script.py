@@ -21,5 +21,4 @@ def get_data():
 
     df = pd.read_csv(StringIO(data))
     return df
-st.write(get_data().head(1))
-st.line_chart(get_data().head(5), x = 'Date', y = 'Close')
+st.line_chart(get_data(), x = 'Date', y = 'Close')
