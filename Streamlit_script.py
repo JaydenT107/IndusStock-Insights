@@ -15,7 +15,6 @@ def get_data():
     sector_string = response['Body'].read().decode('utf-8')
 
     sector_list = sector_string.split(', ')
-    st.write(sector_list)
 
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_1.csv')
     data = data_response['Body'].read().decode('utf-8')
@@ -23,4 +22,4 @@ def get_data():
     df = pd.read_csv(StringIO(data))
     return df.head(2)
 
-st.write(get_data())
+st.dataframe(get_data())
