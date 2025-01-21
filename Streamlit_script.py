@@ -23,7 +23,7 @@ def get_data():
     df = pd.read_csv(StringIO(data))
     return df
     
-data = get_data()
+data = get_data().head(30)
 fig = px.line(data, 'Date','Close')
 close_min = data['Close'].min()
 close_max = data['Close'].max()
