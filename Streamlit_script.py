@@ -4,7 +4,7 @@ from io import StringIO
 import pandas as pd
 import plotly.express as px
 
-col1,col2 = st.columns([2,8])
+col1,col2 = st.columns([3,12])
 
 def get_data():
     s3 = boto3.client(
