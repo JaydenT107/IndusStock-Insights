@@ -16,12 +16,13 @@ def get_data():
     sector_string = response['Body'].read().decode('utf-8')
 
     sector_list = sector_string.split(', ')
-
-    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_1.csv')
-    data = data_response['Body'].read().decode('utf-8')
-
-    df = pd.read_csv(StringIO(data))
-    return df
+    tables = []
+    for num in range(1,5):
+        data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
+        data = data_response['Body'].read().decode('utf-8')
+        df = pd.read_csv(StringIO(data))
+        tables.append(df)
+    return return tables
 
 def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
@@ -32,7 +33,7 @@ def check_color(data):
         return '#FFFF00'
     
 def line_chart():
-    data = get_data().head(30)
+    data = get_data()[0].head(30)
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
