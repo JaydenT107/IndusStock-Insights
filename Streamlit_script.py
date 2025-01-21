@@ -28,6 +28,6 @@ fig = px.line(data, 'Date','Close')
 close_min = data['Close'].min()
 close_max = data['Close'].max()
 fig.update_yaxes(range=[close_min,close_max])
-fig.update_xaxes(dtick = 'M3', tickformat = "%b %Y")
+fig.update_xaxes(dtick = 'M3', tickformat = "%b %Y", nticks = 9)
 
 st.plotly_chart(fig, use_container_width = True)
