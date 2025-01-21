@@ -32,7 +32,7 @@ def check_color(data):
     elif data.iloc[0]['Close'] == data.iloc[-1]['Close']:
         return '#FFFF00'
     
-def line_chart(data,num):
+def line_chart(data):
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
