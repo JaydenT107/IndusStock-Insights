@@ -17,7 +17,7 @@ def get_data():
 
     sector_list = sector_string.split(', ')
     tables = []
-    for num in range(1,5):
+    for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
         df = pd.read_csv(StringIO(data))
