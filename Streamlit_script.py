@@ -22,4 +22,4 @@ def get_data():
     df = pd.read_csv(StringIO(data))
     return df.head(5)
 
-st.line_chart(get_data())
+st.line_chart(get_data(), x = 'Date', y = 'Close')
