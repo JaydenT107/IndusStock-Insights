@@ -24,11 +24,11 @@ def get_data():
     return df
 
 def check_color(data):
-    if data['Close'][0] < data['Close'][-1]:
+    if data.iloc[0]['Close'] < data.iloc[0]['Close']:
         return 'red'
-    elif data['Close'][0] > data['Close'][-1]:
+    elif data.iloc[0]['Close'] > data.iloc[0]['Close']:
         return 'green'
-    elif data['Close'][0] == data['Close'][-1]:
+    elif data.iloc[0]['Close'] == data.iloc[0]['Close']:
         return 'yellow'
     
 def line_chart():
