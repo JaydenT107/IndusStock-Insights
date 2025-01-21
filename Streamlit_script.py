@@ -2,6 +2,7 @@ import streamlit as st
 import boto3
 from io import StringIO
 import pandas as pd
+import plotly.express as px
 
 def get_data():
     s3 = boto3.client(
@@ -21,4 +22,11 @@ def get_data():
 
     df = pd.read_csv(StringIO(data))
     return df
-st.line_chart(get_data(), x = 'Date', y = 'Close')
+    
+data = get_data()
+fig = px.line(data, 'x','y')
+close_min = data['Close'].min()
+close_max = data['Close'].max()
+fig.update_yaxes(range=[close_min,close_max])
+
+st.plotly_chart(fig, use_container_width = True)
