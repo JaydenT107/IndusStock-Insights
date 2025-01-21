@@ -4,7 +4,7 @@ from io import StringIO
 import pandas as pd
 import plotly.express as px
 
-col1,col2 = st.columns([3,12])
+col1,col2,col3 = st.columns([3,3,3])
 
 def get_data():
     s3 = boto3.client(
@@ -62,15 +62,15 @@ def line_chart(data,name):
 )
     
 
-    return col2.plotly_chart(fig, use_container_width = True)
+    return col3.plotly_chart(fig, use_container_width = True)
 
 
 def generate_chart():
     data,name,sector,AI_description = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
-    col2.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-    col2.write(AI_description)
+    col3.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
+    col3.write(AI_description)
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
