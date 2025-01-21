@@ -17,7 +17,7 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    sector = st.selectbox('Select Industry', sector_list.unique())
+    sector = st.selectbox('Select Industry', set(sector_list))
   
     tables = []
     names = []
