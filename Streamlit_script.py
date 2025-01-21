@@ -27,9 +27,11 @@ def line_chart():
     data = get_data().head(30)
     close_min = data['Close'].min()
     close_max = data['Close'].max()
+
     fig.update_yaxes(range=[close_min,close_max])
-    fig.update_xaxes(nticks = 5)
     fig.update_traces(line = dict(color = 'red'))
+    fig.update_xaxes(nticks = 5)
+    
 
     return st.plotly_chart(fig, use_container_width = True)
 
