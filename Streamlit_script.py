@@ -23,11 +23,14 @@ def get_data():
     df = pd.read_csv(StringIO(data))
     return df
     
-data = get_data().head(30)
-fig = px.line(data, 'Date','Close')
-close_min = data['Close'].min()
-close_max = data['Close'].max()
-fig.update_yaxes(range=[close_min,close_max])
-fig.update_xaxes(nticks = 5)
+def line_chart():
+    data = get_data().head(30)
+    fig = px.line(data, 'Date','Close')
+    close_min = data['Close'].min()
+    close_max = data['Close'].max()
+    fig.update_yaxes(range=[close_min,close_max])
+    fig.update_xaxes(nticks = 5)
 
-st.plotly_chart(fig, use_container_width = True)
+    return st.plotly_chart(fig, use_container_width = True)
+
+line_chart()
