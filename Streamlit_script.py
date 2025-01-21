@@ -61,8 +61,7 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    data,name = data_name
-    
+    data,name = get_data()
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
