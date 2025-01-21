@@ -29,7 +29,7 @@ def get_data():
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names]
+    return [tables,names,sector_list]
 
 def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
@@ -57,8 +57,10 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    data,name = get_data()
+    data,name,sector_list = get_data()
+    category = st.selectbox('Select Industry', sector_list.unique())
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
+
 
 generate_chart()
