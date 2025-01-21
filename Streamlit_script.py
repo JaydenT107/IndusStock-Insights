@@ -22,6 +22,14 @@ def get_data():
 
     df = pd.read_csv(StringIO(data))
     return df
+
+def check_color(data):
+    if data[0] < data[-1]:
+        return 'red'
+    elif data[0] > data[-1]:
+        return 'green'
+    elif data[0] == data[-1]:
+        return 'yellow'
     
 def line_chart():
     data = get_data().head(30)
@@ -29,7 +37,7 @@ def line_chart():
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
     fig.update_yaxes(range=[close_min,close_max])
-    fig.update_traces(line = dict(color = 'red'))
+    fig.update_traces(line = dict(color = check_color(data) ))
     fig.update_xaxes(nticks = 5)
     
 
