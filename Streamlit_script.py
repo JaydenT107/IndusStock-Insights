@@ -33,7 +33,7 @@ def check_color(data):
         return '#FFFF00'
     
 def line_chart():
-    data = get_data()[2].head(30)
+    data = get_data()[3].head(30)
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
