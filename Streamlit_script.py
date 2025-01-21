@@ -23,7 +23,7 @@ def get_data():
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
-        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}.csv')
+        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}_name.csv')
         name = name_response['Body'].read().decode('utf-8')
        
         df = pd.read_csv(StringIO(data))
