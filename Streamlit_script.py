@@ -25,7 +25,7 @@ def get_data():
     
 def line_chart():
     data = get_data().head(30)
-    fig = px.line(data, 'Date','Close', color = 'red')
+    fig = px.line(data, 'Date','Close', line = dict(color = 'red'))
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig.update_yaxes(range=[close_min,close_max])
