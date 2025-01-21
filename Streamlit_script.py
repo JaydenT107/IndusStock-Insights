@@ -20,6 +20,6 @@ def get_data():
     data = data_response['Body'].read().decode('utf-8')
 
     df = pd.read_csv(StringIO(data))
-    return df.head(2)
+    return df.head(5)
 
-st.dataframe(get_data())
+st.line_chart(get_data())
