@@ -62,7 +62,7 @@ def line_chart(data,name):
 
 def generate_chart():
     data,name,sector = get_data()
-    st.header(f'{sector}')
+    st.markdown(f"<h1 style='font-size: 60px; color: yellow;'>{sector}</h1>", unsafe_allow_html=True)
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
