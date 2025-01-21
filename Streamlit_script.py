@@ -27,6 +27,6 @@ data = get_data()
 fig = px.line(data, 'Date','Close')
 close_min = data['Close'].min()
 close_max = data['Close'].max()
-fig.update_yaxes(range=[close_min,close_max])
+fig.update_yaxes(range=[close_min,close_max], dtick = 'W2', tickformat = "%b %Y")
 
 st.plotly_chart(fig, use_container_width = True)
