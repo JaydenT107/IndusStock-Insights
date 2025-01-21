@@ -65,6 +65,8 @@ def line_chart(data,name):
 
 def generate_chart():
     data,name,sector,AI_description = get_data()
+    if "_" in sector:
+        sector.replace("_", " ")
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
     st.write(AI_description)
     for i in range(0,5):
