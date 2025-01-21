@@ -4,6 +4,8 @@ from io import StringIO
 import pandas as pd
 import plotly.express as px
 
+col1,col2 = st.columns([3,1])
+
 def get_data():
     s3 = boto3.client(
         's3',
@@ -17,7 +19,7 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    sector = st.selectbox('Select Industry', set(sector_list))
+    sector = col2.st.selectbox('Select Industry', set(sector_list))
   
     tables = []
     names = []
@@ -70,7 +72,7 @@ def generate_chart():
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
     st.write(AI_description)
     for i in range(0,5):
-        line_chart(data[i].head(30),name[i])
+        col1.line_chart(data[i].head(30),name[i])
 
 
 generate_chart()
