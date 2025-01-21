@@ -32,8 +32,7 @@ def check_color(data):
     elif data.iloc[0]['Close'] == data.iloc[-1]['Close']:
         return '#FFFF00'
     
-def line_chart():
-    data = get_data()[3].head(30)
+def line_chart(data,num):
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
@@ -44,4 +43,8 @@ def line_chart():
 
     return st.plotly_chart(fig, use_container_width = True)
 
-line_chart()
+
+def generate_chart():
+    data = get_data()
+    for i in range(0,4):
+        return line_chart(data[i].head(30))
