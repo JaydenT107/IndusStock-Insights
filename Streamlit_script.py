@@ -21,6 +21,9 @@ def get_data():
   
     tables = []
     names = []
+    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_analysis.txt')
+    AI_description = data_response['Body'].read().decode('utf-8')
+    
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
@@ -30,7 +33,7 @@ def get_data():
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names,sector]
+    return [tables,names,sector, AI_description]
 
 
 
@@ -61,8 +64,9 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    data,name,sector = get_data()
+    data,name,sector,AI_description = get_data()
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
+    st.write(AI_description)
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
