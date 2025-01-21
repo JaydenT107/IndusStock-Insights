@@ -19,7 +19,6 @@ def get_data():
     sector_list = sector_string.split(', ')
 
     sector = st.sidebar.selectbox('Select Industry', set(sector_list))
-    st.sidebar.write(f'You selected: {sector}')
   
     tables = []
     names = []
@@ -64,6 +63,14 @@ def line_chart(data,name):
 
     return st.plotly_chart(fig, use_container_width = True)
 
+def date_selectbox():
+    period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
+    if period = '3 Months':
+        return 95
+    elif period = '1 Month':
+        return 31
+    elif period = '1 Week':
+        return 7
 
 def generate_chart():
     data,name,sector,AI_description = get_data()
@@ -71,8 +78,9 @@ def generate_chart():
         sector = sector.replace("_", " ")
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
     st.write(AI_description)
+    period = date_selectbox()
     for i in range(0,5):
-        line_chart(data[i].head(30),name[i])
+        line_chart(data[i].head(period),name[i])
 
 
 generate_chart()
