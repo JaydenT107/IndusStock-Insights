@@ -24,7 +24,7 @@ def get_data():
     return df
 
 def check_color(data):
-    if data['Close']][0] < data['Close'][-1]:
+    if data['Close'][0] < data['Close'][-1]:
         return 'red'
     elif data['Close'][0] > data['Close'][-1]:
         return 'green'
