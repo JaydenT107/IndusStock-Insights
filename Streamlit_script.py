@@ -62,7 +62,7 @@ def line_chart(data,name):
 )
     
 
-    return st.plotly_chart(fig, use_container_width = True)
+    return col1.plotly_chart(fig, use_container_width = True)
 
 
 def generate_chart():
@@ -72,7 +72,7 @@ def generate_chart():
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
     st.write(AI_description)
     for i in range(0,5):
-        col1.line_chart(data[i].head(30),name[i])
+        line_chart(data[i].head(30),name[i])
 
 
 generate_chart()
