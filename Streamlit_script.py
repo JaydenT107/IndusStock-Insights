@@ -19,7 +19,7 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    sector = col2.st.selectbox('Select Industry', set(sector_list))
+    sector = col2.selectbox('Select Industry', set(sector_list))
   
     tables = []
     names = []
