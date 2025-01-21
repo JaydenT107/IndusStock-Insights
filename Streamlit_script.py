@@ -15,10 +15,10 @@ def get_data():
     response = s3.get_object(Bucket='stocksectordata', Key='sector_list.txt')
     sector_string = response['Body'].read().decode('utf-8')
 
+    sector_list = sector_string.split(', ')
+
     name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}.csv')
     name = name_response['Body'].read().decode('utf-8')
-
-    sector_list = sector_string.split(', ')
     tables = []
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
