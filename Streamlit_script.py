@@ -22,7 +22,7 @@ def get_data():
         data = data_response['Body'].read().decode('utf-8')
         df = pd.read_csv(StringIO(data))
         tables.append(df)
-    return return tables
+    return tables
 
 def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
