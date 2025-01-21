@@ -30,7 +30,7 @@ def get_data():
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names]
+    return [tables,names,sector]
 
 
 
@@ -61,7 +61,8 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    data,name = get_data()
+    data,name,sector = get_data()
+    st.header(f'{sector}')
     for i in range(0,5):
         line_chart(data[i].head(30),name[i])
 
