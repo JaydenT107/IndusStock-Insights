@@ -65,11 +65,11 @@ def line_chart(data,name):
 
 def date_selectbox():
     period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
-    if period = '3 Months':
+    if period == '3 Months':
         return 95
-    elif period = '1 Month':
+    elif period == '1 Month':
         return 31
-    elif period = '1 Week':
+    elif period == '1 Week':
         return 7
 
 def generate_chart():
