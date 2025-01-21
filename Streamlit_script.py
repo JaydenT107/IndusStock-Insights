@@ -17,16 +17,19 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}.csv')
-    name = name_response['Body'].read().decode('utf-8')
+    
     tables = []
+    names = []
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
+        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector_list[0]}/Name/stock_{num}.csv')
+        name = name_response['Body'].read().decode('utf-8')
        
         df = pd.read_csv(StringIO(data))
         tables.append(df)
-    return [tables,name]
+        names.append(name)
+    return [tables,names]
 
 def check_color(data):
     if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
