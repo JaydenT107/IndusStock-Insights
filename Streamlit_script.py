@@ -88,6 +88,7 @@ def generate_chart():
         st.write(AI_description)
         st.write(" ")
         st.write(" ")
+        st.write(" ")
         line_chart(data[3].head(period),name[3])
 
     with col2:
