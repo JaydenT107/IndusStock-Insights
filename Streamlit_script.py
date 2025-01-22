@@ -53,11 +53,11 @@ def get_data():
 
 
 def check_color(data):
-    if data.iloc[0]['Close'] > data.iloc[-1]['Close']:
+    if data.iloc[-1]['Close'] > data.iloc[0]['Close']:
         return '#FF2800'
-    elif data.iloc[0]['Close'] < data.iloc[-1]['Close']:
+    elif data.iloc[-1]['Close'] < data.iloc[0]['Close']:
         return '#40FF00'
-    elif data.iloc[0]['Close'] == data.iloc[-1]['Close']:
+    elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
 def line_chart(data,name):
