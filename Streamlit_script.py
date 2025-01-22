@@ -33,7 +33,7 @@ def get_data():
     
     period, AI_description_txt = date_selectbox()
 
-    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/AI_description_txt')
+    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/{AI_description_txt}')
     AI_description = data_response['Body'].read().decode('utf-8')
 
     for num in range(1,6):
