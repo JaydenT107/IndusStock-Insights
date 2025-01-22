@@ -4,6 +4,8 @@ from io import StringIO
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(layout="wide")
+
 def date_selectbox():
     period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
     if period == '3 Months':
