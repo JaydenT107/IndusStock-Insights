@@ -3,4 +3,4 @@ pandas
 streamlit
 plotly
 datetime
-dateutil.relativedelta
+dateutil
