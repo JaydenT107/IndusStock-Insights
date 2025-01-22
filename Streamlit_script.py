@@ -65,7 +65,7 @@ def line_chart(data,name):
     close_max = data['Close'].max()
     fig = px.line(data,x = 'Date' , y = 'Close')
     fig.update_yaxes(range=[close_min,close_max])
-    fig.update_traces(x = x[::-1], y = y[::-1] , line = dict(color = check_color(data) ))
+    fig.update_traces(x = data['Date'][::-1], y = data['Close'][::-1] , line = dict(color = check_color(data) ))
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
     title=name,  
