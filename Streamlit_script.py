@@ -82,7 +82,6 @@ def generate_chart():
         sector = sector.replace("_", " ")
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
     st.write(AI_description)
-    period = date_selectbox()
     for i in range(0,5):
         line_chart(data[i].head(period),name[i])
 
