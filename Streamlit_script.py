@@ -78,7 +78,17 @@ def line_chart(data,name):
 
     return st.plotly_chart(fig, use_container_width = False)
 
-
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: black;
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 def generate_chart():
     st.markdown(
