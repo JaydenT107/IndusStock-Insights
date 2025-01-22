@@ -77,7 +77,7 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([5,5])
     data,name,sector,AI_description, period = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
