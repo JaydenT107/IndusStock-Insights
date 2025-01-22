@@ -86,14 +86,15 @@ def generate_chart():
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.write(AI_description)
-        st.write("\n\n\n\n")
+        st.write(" ")
+        st.write(" ")
         line_chart(data[3].head(period),name[3])
 
     with col2:
         
         for i in range(0,2):
             line_chart(data[i].head(period),name[i])
-            st.write("\n\n")
+            
 
     with col3:
         for i in range(2,5):
@@ -101,7 +102,7 @@ def generate_chart():
                 continue
             else:
                 line_chart(data[i].head(period),name[i])
-                st.write("\n\n")
+                
 
 
 generate_chart()
