@@ -7,11 +7,12 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide")
+
 st.markdown("""
     <style>
         .stSelectbox>div>div>div>div>div {
             background-color: black;
-            color: white;
+            color: black;
         }
         .stSelectbox>div>div>div>div>div>input {
             color: white;
