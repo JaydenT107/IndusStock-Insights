@@ -70,9 +70,9 @@ def line_chart(data,name):
     fig.update_layout(
     title=name,  
     title_x=0.5,            
-    title_font=dict(size=24, family='Soin Sans Pro', color='white',
-    width = 300,
-    height = 300) 
+    title_font=dict(size=24, family='Soin Sans Pro', color='white'),
+    width = 100,
+    height = 100
 )
     
 
