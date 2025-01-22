@@ -113,7 +113,7 @@ def generate_chart():
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height' style='color: white;'>{AI_description}</div>", unsafe_allow_html=True)
         st.write(" ")
-        line_chart(data[3].head(period),name[3],sday,eday)
+        line_chart(data[3],name[3],sday,eday)
 
     with col2:
         
