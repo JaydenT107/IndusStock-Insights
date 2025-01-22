@@ -86,7 +86,7 @@ def generate_chart():
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.write(AI_description)
-        st.write("\n\n")
+        st.write("\n\n\n\n")
         line_chart(data[3].head(period),name[3])
 
     with col2:
