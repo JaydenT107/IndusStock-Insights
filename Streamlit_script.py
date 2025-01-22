@@ -81,13 +81,24 @@ def line_chart(data,name):
 
 
 def generate_chart():
+    st.markdown(
+    """
+    <style>
+    .fixed-height {
+        height: 100px;  /* Set a fixed height */
+        overflow: auto; /* Add scrolling if text exceeds the height */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
     col1, col2, col3 = st.columns([3,3,3])
     data,name,sector,AI_description, period = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-        st.write(AI_description)
+        st.markdown(f"<div class='fixed-height'>{AI_description}</div>", unsafe_allow_html=True)
         st.write(" ")
         line_chart(data[3].head(period),name[3])
 
@@ -95,10 +106,6 @@ def generate_chart():
         
         for i in range(0,2):
             line_chart(data[i].head(period),name[i])
-            st.write(" ")
-            st.write(" ")
-            st.write(" ")
-            st.write(" ")
             
 
     with col3:
@@ -107,10 +114,6 @@ def generate_chart():
                 continue
             else:
                 line_chart(data[i].head(period),name[i])
-                st.write(" ")
-                st.write(" ")
-                st.write(" ")
-                st.write(" ")
                 
 
 
