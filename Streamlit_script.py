@@ -12,7 +12,7 @@ st.markdown("""
     <style>
         .stSelectbox>div>div>div>div>div {
             background-color: black;
-            color: black;
+            color: white;
         }
         .stSelectbox>div>div>div>div>div>input {
             color: white;
