@@ -97,7 +97,7 @@ def generate_chart():
         sector = sector.replace("_", " ")
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-        st.markdown(f"<div class='fixed-height'>{AI_description}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='fixed-height'>style='color: white{AI_description}</div>", unsafe_allow_html=True)
         st.write(" ")
         line_chart(data[3].head(period),name[3])
 
