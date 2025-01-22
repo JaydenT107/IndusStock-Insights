@@ -4,6 +4,14 @@ from io import StringIO
 import pandas as pd
 import plotly.express as px
 
+def date_selectbox():
+    period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
+    if period == '3 Months':
+        return [95,'3_Months_AI_analysis.txt']
+    elif period == '1 Month':
+        return [31, 'Monthly_AI_analysis.txt']
+    elif period == '1 Week':
+        return [7, 'Weekly_AI_analysis.txt']
 
 def get_data():
     s3 = boto3.client(
@@ -22,9 +30,12 @@ def get_data():
   
     tables = []
     names = []
-    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_analysis.txt')
-    AI_description = data_response['Body'].read().decode('utf-8')
     
+    period, AI_description_txt = data_selectbox()
+
+    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/AI_description_txt')
+    AI_description = data_response['Body'].read().decode('utf-8')
+
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8')
@@ -34,7 +45,7 @@ def get_data():
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names,sector, AI_description]
+    return [tables,names,sector, AI_description, period]
 
 
 
@@ -63,17 +74,10 @@ def line_chart(data,name):
 
     return st.plotly_chart(fig, use_container_width = True)
 
-def date_selectbox():
-    period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
-    if period == '3 Months':
-        return 95
-    elif period == '1 Month':
-        return 31
-    elif period == '1 Week':
-        return 7
+
 
 def generate_chart():
-    data,name,sector,AI_description = get_data()
+    data,name,sector,AI_description, period = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
     st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
