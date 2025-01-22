@@ -1,6 +1,6 @@
 [theme]
-backgroundColor = "#000000"
-primaryColor = "#ffffff"
-secondaryBackgroundColor = "#1e1e1e"  
-textColor = "#ffffff" 
-font = "sans serif
+primaryColor = "blue"
+backgroundColor = "#000000"  # Set background to black
+secondaryBackgroundColor = "#1e1e1e"  # Dark gray for sidebar background
+textColor = "#ffffff"  # White text
+font = "sans serif"
