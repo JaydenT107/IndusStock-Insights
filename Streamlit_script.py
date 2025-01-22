@@ -118,7 +118,7 @@ def generate_chart():
     with col2:
         
         for i in range(0,2):
-            line_chart(data[i].head(period),name[i],sday,eday)
+            line_chart(data[i],name[i],sday,eday)
             
 
     with col3:
@@ -126,7 +126,7 @@ def generate_chart():
             if i == 3:
                 continue
             else:
-                line_chart(data[i].head(period),name[i],sday,eday)
+                line_chart(data[i],name[i],sday,eday)
                 
 
 
