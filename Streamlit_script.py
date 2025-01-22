@@ -72,7 +72,7 @@ def line_chart(data,name):
     title_x=0.5,            
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
-    height = 800
+    height = 400
 )
     
 
