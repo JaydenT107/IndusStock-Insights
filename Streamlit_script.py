@@ -85,7 +85,7 @@ def generate_chart():
     """
     <style>
     .fixed-height {
-        height: 100px;  /* Set a fixed height */
+        height: 400px;  /* Set a fixed height */
         overflow: auto; /* Add scrolling if text exceeds the height */
     }
     </style>
