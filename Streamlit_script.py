@@ -3,17 +3,29 @@ import boto3
 from io import StringIO
 import pandas as pd
 import plotly.express as px
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide")
 
 def date_selectbox():
+    end_date = datetime.now()
     period = st.sidebar.selectbox('Select Time Period', ['3 Months', '1 Month', '1 Week'])
+
     if period == '3 Months':
-        return [95,'3_Months_AI_analysis.txt']
+
+        start_date = end_date - relativedelta(months=3)
+        return [start_date,end_date,'3_Months_AI_analysis.txt']
+
     elif period == '1 Month':
-        return [31, 'Monthly_AI_analysis.txt']
+
+        start_date = end_date - relativedelta(months=1)
+        return [start_date,end_date, 'Monthly_AI_analysis.txt']
+
     elif period == '1 Week':
-        return [7, 'Weekly_AI_analysis.txt']
+
+        start_date = end_date - relativedelta(weeks=1)
+        return [start_date,end_date, 'Weekly_AI_analysis.txt']
 
 def get_data():
     s3 = boto3.client(
@@ -33,7 +45,7 @@ def get_data():
     tables = []
     names = []
     
-    period, AI_description_txt = date_selectbox()
+    sday, eday , AI_description_txt = date_selectbox()
 
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/{AI_description_txt}')
     AI_description = data_response['Body'].read().decode('utf-8')
@@ -47,7 +59,7 @@ def get_data():
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
-    return [tables,names,sector, AI_description, period]
+    return [tables,names,sector, AI_description, sday,eday]
 
 
 
@@ -60,12 +72,14 @@ def check_color(data):
     elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
-def line_chart(data,name):
+def line_chart(data,name,sday,eday):
+    data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
+    filtered_data = data[(data['Date'] >= start_date) & (data['Date'] <= end_date)]
     close_min = data['Close'].min()
     close_max = data['Close'].max()
-    fig = px.line(data,x = 'Date' , y = 'Close')
+    fig = px.line(filtered_data,x = 'Date' , y = 'Close')
     fig.update_yaxes(range=[close_min,close_max])
-    fig.update_traces(x = data['Date'][::-1], y = data['Close'][::-1] , line = dict(color = check_color(data) ))
+    fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = check_color(data) ))
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
     title=name,  
@@ -92,19 +106,19 @@ def generate_chart():
     unsafe_allow_html=True,
 )
     col1, col2, col3 = st.columns([3,3,3])
-    data,name,sector,AI_description, period = get_data()
+    data,name,sector,AI_description, sday,eday = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height' style='color: white;'>{AI_description}</div>", unsafe_allow_html=True)
         st.write(" ")
-        line_chart(data[3].head(period),name[3])
+        line_chart(data[3].head(period),name[3],sday,eday)
 
     with col2:
         
         for i in range(0,2):
-            line_chart(data[i].head(period),name[i])
+            line_chart(data[i].head(period),name[i],sday,eday)
             
 
     with col3:
@@ -112,7 +126,7 @@ def generate_chart():
             if i == 3:
                 continue
             else:
-                line_chart(data[i].head(period),name[i])
+                line_chart(data[i].head(period),name[i],sday,eday)
                 
 
 
