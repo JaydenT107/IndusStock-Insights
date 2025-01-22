@@ -74,7 +74,7 @@ def check_color(data):
     
 def line_chart(data,name,sday,eday):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
-    filtered_data = data[(data['Date'] >= start_date) & (data['Date'] <= end_date)]
+    filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     close_min = data['Close'].min()
     close_max = data['Close'].max()
     fig = px.line(filtered_data,x = 'Date' , y = 'Close')
