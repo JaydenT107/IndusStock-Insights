@@ -10,6 +10,18 @@ st.set_page_config(layout="wide")
 
 st.markdown("""
     <style>
+        /* Change the sidebar background to black */
+        .css-1d391kg {
+            background-color: black;
+            color: white;
+        }
+
+        /* Change the color of text in the sidebar */
+        .css-1d391kg, .css-1d391kg p, .css-1d391kg a {
+            color: white;
+        }
+
+        /* Adjust the color of the selectbox and other widgets inside the sidebar */
         .stSelectbox>div>div>div>div>div {
             background-color: black;
             color: white;
