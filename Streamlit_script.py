@@ -79,13 +79,13 @@ def line_chart(data,name):
 
 
 def generate_chart():
-    col1, col2 = st.columns([5,5])
+    col1, col2 = st.columns([2])
     data,name,sector,AI_description, period = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
-    st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-    st.write(AI_description)
     with col1:
+        st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
+        st.write(AI_description)
         for i in range(0,3):
             line_chart(data[i].head(period),name[i])
 
