@@ -141,5 +141,5 @@ def generate_chart():
                 line_chart(data[i],name[i],sday,eday,date_format)
                 
 
-
+#remember to build a votality system
 generate_chart()
