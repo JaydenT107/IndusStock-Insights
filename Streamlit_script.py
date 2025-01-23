@@ -110,9 +110,10 @@ def generate_chart():
     data,name,sector,AI_description, sday,eday = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
+
     new_string_list = []
     for index,char in enumerate(AI_description.split(' ')):
-        if char.isnumeric() or char in '-%':
+        if '%' in char:
             new_string_list.append('**' + char + '**')
         else:
             new_string_list.append(char)
