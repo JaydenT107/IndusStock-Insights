@@ -110,9 +110,18 @@ def generate_chart():
     data,name,sector,AI_description, sday,eday = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
+    new_string = []
+    for index,char in enumerate(AI_description.split(' ')):
+        if char.isnum() or char in '-%':
+            new_string.append(** + char + ++)
+        else:
+            new_string.append(char)
+    new_string = ' '.join(new_string)
+            
+
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-        st.markdown(f"<div class='fixed-height' style='color: white;'>{AI_description}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='fixed-height' style='color: white;'>{new_string}</div>", unsafe_allow_html=True)
         st.write(" ")
         line_chart(data[3],name[3],sday,eday)
 
