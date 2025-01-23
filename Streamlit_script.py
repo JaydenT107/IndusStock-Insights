@@ -113,7 +113,7 @@ def generate_chart():
     new_string = []
     for index,char in enumerate(AI_description.split(' ')):
         if char.isnum() or char in '-%':
-            new_string.append(** + char + ++)
+            new_string.append('**' + char + '**')
         else:
             new_string.append(char)
     new_string = ' '.join(new_string)
