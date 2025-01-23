@@ -7,7 +7,9 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide")
-st.header('IndusStock')
+st.header('**IndusStock Insight**')
+st.write("""IndusStock Insights is an AI-powered platform that identifies the top 5 stocks within a specific industry, pulls real-time data via a stock API to generate detailed charts,
+ and provides intelligent, data-driven recommendations to help users decide whether to buy or hold.""")
 
 
 def date_selectbox():
