@@ -91,13 +91,13 @@ def line_chart(data,name,sday,eday,date_format):
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
-    xaxis = dict(tickformat = date_format(date_format))
+    xaxis = dict(tickformat = date_format_func(date_format))
 )
     
 
     return st.plotly_chart(fig, use_container_width = False)
 
-def date_format(data):
+def date_format_func(data):
     if data == '3 months':
         return '%b %Y'
     elif data == '1 month' or '1 week':
