@@ -98,9 +98,9 @@ def line_chart(data,name,sday,eday,date_format):
     return st.plotly_chart(fig, use_container_width = False)
 
 def date_format(data):
-    if data = '3 months':
+    if data == '3 months':
         return '%b %Y'
-    elif data = '1 month' or '1 week':
+    elif data == '1 month' or '1 week':
         return '%d/%m/%y'
 
 
