@@ -112,7 +112,7 @@ def generate_chart():
         sector = sector.replace("_", " ")
     new_string = []
     for index,char in enumerate(AI_description.split(' ')):
-        if char.isnum() or char in '-%':
+        if char.isnumeric() or char in '-%':
             new_string.append('**' + char + '**')
         else:
             new_string.append(char)
