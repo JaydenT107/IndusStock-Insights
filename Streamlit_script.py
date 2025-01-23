@@ -7,6 +7,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide")
+st.header('IndusStock')
 
 
 def date_selectbox():
@@ -114,7 +115,7 @@ def generate_chart():
     new_string_list = []
     for index,char in enumerate(AI_description.split(' ')):
         if '%' in char:
-            new_string_list.append('**_' + char + '_**')
+            new_string_list.append('**' + char + '**')
         else:
             new_string_list.append(char)
 
