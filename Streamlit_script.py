@@ -114,7 +114,7 @@ def generate_chart():
     new_string_list = []
     for index,char in enumerate(AI_description.split(' ')):
         if '%' in char:
-            new_string_list.append('**' + char + '**')
+            new_string_list.append('***' + char + '***')
         else:
             new_string_list.append(char)
 
