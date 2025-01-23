@@ -100,7 +100,7 @@ def generate_chart():
     """
     <style>
     .fixed-height {
-        height: 300px;  
+        height: 310px;  
         overflow: auto; 
     }
     </style>
