@@ -143,4 +143,3 @@ def generate_chart():
 
 
 generate_chart()
-st.write("abc")
