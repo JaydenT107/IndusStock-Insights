@@ -8,8 +8,9 @@ from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide")
 st.header('**IndusStock Insight**')
-st.write("""IndusStock Insights is an AI-powered platform that identifies the top 5 stocks within a specific industry, pulls real-time data via a stock API to generate detailed charts,
- and provides intelligent, data-driven recommendations to help users decide whether to buy or hold.""")
+st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry.
+ It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance. The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, 
+IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
 
 
 def date_selectbox():
