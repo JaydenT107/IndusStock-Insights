@@ -77,6 +77,8 @@ def check_color(data):
         return '#FFFF00'
     
 def line_chart(data,name,sday,eday,date_format,title=None):
+    if name == None:
+        name = title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     close_min = filtered_data['Close'].min()
@@ -112,31 +114,30 @@ def generate_chart():
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-    chart_list = []
+
     with col2:
         
         for i in range(0,2):
-            chart_list.append(line_chart(data[i],name[i],sday,eday, date_format))
-            st.plotly_chart(chart_list[-1], use_container_witdh = False)
+            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format),use_container_width = False)
             
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
-        chart_list.append(line_chart(data[3],name[3],sday,eday,date_format))
-        st.plotly_chart(chart_list[-1], use_container_witdh = False)       
+        st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False)  
 
     with col3:
         for i in range(2,5):
             if i == 3:
                 continue
             else:
-                chart_list.append(line_chart(data[i],name[i],sday,eday,date_format))
-                st.plotly_chart(chart_list[-1], use_container_witdh = False)
-    return name,chart_list     
+                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False)
+    return name,data,sday,eday,date_format 
 
 
-name,chart_list = generate_chart()
+name,data,sday,eday,date_format  = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
+data[name.index(stock_name)]
+st.plotly_chart(line_chart(data[name.index(name)],name = None,sday,eday, date_format, title = f'{name[name.index(stock_name)]} symbol'), use_container_width = False)
