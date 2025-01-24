@@ -139,3 +139,4 @@ with col1:
     stock_name = st.selectbox('Select Stock',name)
 
 st.title(stock_name)
+line_chart(data[name.index(stock_name)],name[name.index(stock_name)],sday,eday,date_format)
