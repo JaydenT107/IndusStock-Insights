@@ -139,7 +139,5 @@ name,data,sday,eday,date_format  = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
-data[name.index(stock_name)]
-st.write(data[name.index(stock_name)])
-st.write(name[name.index(stock_name)])
-st.plotly_chart(line_chart(data[name.index(name)],sday,eday, date_format, new_title = 'a', name = None), use_container_width = False)
+
+st.plotly_chart(line_chart(data[name.index(stock_name)],sday,eday, date_format, new_title = f'Symbol: {stock_name}', name = None), use_container_width = False)
