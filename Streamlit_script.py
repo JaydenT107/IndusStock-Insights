@@ -134,9 +134,9 @@ def generate_chart():
     return data,name,sector,sday,eday,date_format       
 
 
-data,name,sector,start_day,end_day,date_format_1 = generate_chart()
+data,name,sector,AI_description, sday,eday, date_format = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
 st.title(stock_name)
-line_chart(data[name.index(stock_name)],name[name.index(stock_name)],start_day,end_day,date_format_1)
+line_chart(data[name.index(stock_name)],name[name.index(stock_name)],sday,eday,date_format)
