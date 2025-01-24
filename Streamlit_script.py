@@ -138,4 +138,4 @@ def generate_chart():
 name,data,sday,eday,date_format  = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
-    st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Symbol: {stock_name}', name = None), use_container_width = False)
+    st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Symbol: {stock_name}', name = None), use_container_width = True)
