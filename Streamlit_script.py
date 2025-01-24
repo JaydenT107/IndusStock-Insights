@@ -95,7 +95,7 @@ def line_chart(data,name,sday,eday,date_format):
 )
     
 
-    return st.plotly_chart(fig, use_container_width = False)
+    return fig
 
 def date_format_func(data):
     if data == '3 months':
@@ -117,22 +117,22 @@ def generate_chart():
         
         for i in range(0,2):
             chart_list.append(line_chart(data[i],name[i],sday,eday, date_format))
-            chart_list[-1]
+            st.plotly_chart(chart_list[-1], use_container_witdh = False)
             
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
-        line_chart(data[3],name[3],sday,eday,date_format)
-               
+        chart_list.append(line_chart(data[3],name[3],sday,eday,date_format))
+        st.plotly_chart(chart_list[-1], use_container_witdh = False)       
 
     with col3:
         for i in range(2,5):
             if i == 3:
                 continue
             else:
-                line_chart(data[i],name[i],sday,eday,date_format)
-                
+                chart_list.append(line_chart(data[i],name[i],sday,eday,date_format))
+                st.plotly_chart(chart_list[-1], use_container_witdh = False)
     return name,chart_list     
 
 
@@ -140,4 +140,3 @@ name,chart_list = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
-chart_list[0]
