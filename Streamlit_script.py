@@ -81,7 +81,7 @@ def line_chart(data,name,sday,eday,date_format):
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     close_min = filtered_data['Close'].min()
     close_max = filtered_data['Close'].max()
-    fig = px.line(filtered_data,x = 'Date' , y = 'Close', text = 'Close')
+    fig = px.line(filtered_data,x = 'Date' , y = 'Close')
     fig.update_yaxes(range=[close_min,close_max])
     fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = check_color(filtered_data) ))
     fig.update_xaxes(nticks = 5)
@@ -106,17 +106,7 @@ def date_format_func(data):
 col1, col2, col3 = st.columns([3,3,3])
 
 def generate_chart():
-    st.markdown(
-    """
-    <style>
-    .fixed-height {
-        height: 310px;  
-        overflow: auto; 
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+    st.markdown("""<style>.fixed-height {height: 310px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
     data,name,sector,AI_description, sday,eday, date_format = get_data()
     if "_" in sector:
@@ -147,4 +137,4 @@ def generate_chart():
 name = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
-    st.title(stock_name)
+st.title(stock_name)
