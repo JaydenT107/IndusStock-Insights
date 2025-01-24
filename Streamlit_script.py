@@ -142,4 +142,4 @@ with col1:
 data[name.index(stock_name)]
 st.write(data[name.index(stock_name)])
 st.write(name[name.index(stock_name)])
-st.plotly_chart(line_chart(data[name.index(name)],name = None,sday,eday, date_format, new_title = 'a'), use_container_width = False)
+st.plotly_chart(line_chart(data[name.index(name)],sday,eday, date_format, new_title = 'a', name = None), use_container_width = False)
