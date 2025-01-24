@@ -107,7 +107,7 @@ def date_format_func(data):
 
 
 
-def generate_chart():
+def first_part():
     col1, col2, col3 = st.columns([3,3,3])
     st.markdown("""<style>.fixed-height {height: 310px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
@@ -135,9 +135,12 @@ def generate_chart():
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False)
     return name,data,sday,eday,date_format 
 
+def second_part():
+    name,data,sday,eday,date_format  = generate_chart()
+    col1,col2 = st.columns(2)
+    with col1:
+        stock_name = st.selectbox('Select Stock',name)
+        st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True)
 
-name,data,sday,eday,date_format  = generate_chart()
-col1,col2 = st.columns(2)
-with col1:
-    stock_name = st.selectbox('Select Stock',name)
-    st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True)
+first_part()
+second_part()
