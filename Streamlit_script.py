@@ -139,9 +139,10 @@ def second_part():
     name,data,sday,eday,date_format  = first_part()
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
+    stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
+    st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
+    
     with col1:
-        stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
-        st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True)
 
 second_part()
