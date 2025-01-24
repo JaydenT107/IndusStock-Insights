@@ -103,6 +103,7 @@ def date_format_func(data):
     elif data == '1 month' or '1 week':
         return '%d/%m/%y'
 
+col1, col2, col3 = st.columns([3,3,3])
 
 def generate_chart():
     st.markdown(
@@ -116,7 +117,7 @@ def generate_chart():
     """,
     unsafe_allow_html=True,
 )
-    col1, col2, col3 = st.columns([3,3,3])
+   
     data,name,sector,AI_description, sday,eday, date_format = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
