@@ -76,9 +76,9 @@ def check_color(data):
     elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
-def line_chart(data,name,sday,eday,date_format,title=None):
+def line_chart(data,name,sday,eday,date_format,new_title=None):
     if name == None:
-        name = title
+        name = new_title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     close_min = filtered_data['Close'].min()
@@ -142,4 +142,4 @@ with col1:
 data[name.index(stock_name)]
 st.write(data[name.index(stock_name)])
 st.write(name[name.index(stock_name)])
-st.plotly_chart(line_chart(data[name.index(name)],name = None,sday,eday, date_format, title = 'a'), use_container_width = False)
+st.plotly_chart(line_chart(data[name.index(name)],name = None,sday,eday, date_format, new_title = 'a'), use_container_width = False)
