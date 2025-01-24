@@ -131,10 +131,10 @@ def generate_chart():
             else:
                 line_chart(data[i],name[i],sday,eday,date_format)
 
-    return data,name,sector,sday,eday,date_format       
+    return data,name,sday,eday,date_format       
 
 
-data,name,sector,AI_description, sday,eday, date_format = generate_chart()
+data,name,sday,eday,date_format = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
