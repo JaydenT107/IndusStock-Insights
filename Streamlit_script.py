@@ -105,9 +105,10 @@ def date_format_func(data):
     elif data == '1 month' or '1 week':
         return '%d/%m/%y'
 
-col1, col2, col3 = st.columns([3,3,3])
+
 
 def generate_chart():
+    col1, col2, col3 = st.columns([3,3,3])
     st.markdown("""<style>.fixed-height {height: 310px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
     data,name,sector,AI_description, sday,eday, date_format = get_data()
@@ -136,6 +137,7 @@ def generate_chart():
 
 
 name,data,sday,eday,date_format  = generate_chart()
+col1,col2 = st.columns(2)
 with col1:
     stock_name = st.selectbox('Select Stock',name)
     st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Symbol: {stock_name}', name = None), use_container_width = True)
