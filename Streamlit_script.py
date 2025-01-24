@@ -76,7 +76,7 @@ def check_color(data):
     elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
-def line_chart(data,name,sday,eday,date_format):
+def line_chart(data,name,sday,eday,date_format,title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     close_min = filtered_data['Close'].min()
