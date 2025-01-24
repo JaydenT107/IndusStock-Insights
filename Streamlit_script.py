@@ -139,4 +139,4 @@ name,chart_list = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
-chart_list[chart_list.index(stock_name)]
+chart_list[1]
