@@ -145,4 +145,4 @@ def generate_chart():
 
 name = generate_chart()
 
-st.selectbox(name)
+st.selectbox('Select Stock',name)
