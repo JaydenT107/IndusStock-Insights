@@ -139,7 +139,8 @@ def generate_chart():
                 continue
             else:
                 line_chart(data[i],name[i],sday,eday,date_format)
-                
 
-#remember to build a votality system
-generate_chart()
+    return name       
+
+
+name = generate_chart()
