@@ -116,22 +116,23 @@ def generate_chart():
     with col2:
         
         for i in range(0,2):
-            locals()[name[i]] = line_chart(data[i],name[i],sday,eday, date_format)
-            chart_list.append(locals()[name[i]])
+            chart_list.append(line_chart(data[i],name[i],sday,eday, date_format))
+            chart_list[-1]
+            
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
-        locals()[name[3]] = line_chart(data[3],name[3],sday,eday,date_format)
-        chart_list.append(locals()[name[3]])        
+        line_chart(data[3],name[3],sday,eday,date_format)
+               
 
     with col3:
         for i in range(2,5):
             if i == 3:
                 continue
             else:
-                locals()[name[i]] = line_chart(data[i],name[i],sday,eday,date_format)
-                chart_list.append(locals()[name[i]])
+                line_chart(data[i],name[i],sday,eday,date_format)
+                
     return name,chart_list     
 
 
@@ -139,4 +140,4 @@ name,chart_list = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
-chart_list[1]
+chart_list[0]
