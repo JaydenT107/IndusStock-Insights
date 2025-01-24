@@ -137,6 +137,7 @@ def first_part():
 
 def second_part():
     name,data,sday,eday,date_format  = first_part()
+    st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
         stock_name = st.selectbox('Select Stock',name)
