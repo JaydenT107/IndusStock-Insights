@@ -112,31 +112,31 @@ def generate_chart():
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-
-    with col1:
-        st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
-        st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
-        line_chart(data[3],name[3],sday,eday,date_format)
-
+    chart_list = []
     with col2:
         
         for i in range(0,2):
-            line_chart(data[i],name[i],sday,eday, date_format)
-            
+            locals()name[i] = line_chart(data[i],name[i],sday,eday, date_format)
+            chart_list.append(locals()name[i])
+
+    with col1:
+    st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
+    st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
+    locals()name[3] = line_chart(data[3],name[3],sday,eday,date_format)
+    chart_list.append(locals()name[3])        
 
     with col3:
         for i in range(2,5):
             if i == 3:
                 continue
             else:
-                line_chart(data[i],name[i],sday,eday,date_format)
+                locals()name[i] = line_chart(data[i],name[i],sday,eday,date_format)
+                chart_list.append(locals()name[i])
+    return name,chart_list     
 
-    return data,name,sday,eday,date_format       
 
-
-data,name,sday,eday,date_format = generate_chart()
+name,chart_list = generate_chart()
 with col1:
     stock_name = st.selectbox('Select Stock',name)
 
-st.title(stock_name)
-line_chart(data[name.index(stock_name)],name[name.index(stock_name)],sday,eday,date_format)
+chart_list[chart_list.index(stock_name)]
