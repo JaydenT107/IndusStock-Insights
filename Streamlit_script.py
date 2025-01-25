@@ -118,7 +118,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     average = filtered_data['Volume'].mean()
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'])
-    fig.add_hline(y = average, line_dash = 'dash', line_color = 'red', text_annotation = 'Average')
+    fig.add_hline(y = average, line_dash = 'dash', line_color = 'red', annotation_text = 'Average')
     return fig
 
 
@@ -175,5 +175,4 @@ def second_part():
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
-        st.write(data['Volume'].mean())
 second_part()
