@@ -49,13 +49,15 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
     sector_string = response['Body'].read().decode('utf-8')
 
     sector_list = sector_string.split(', ')
+
     tags_sector_list = sector_list.copy()
     tags_sector_list[tags_sector_list.index('Real_Estate')] = 'Real Estate'
 
     
-
     sector = st.pills('**Tags**', set(tags_sector_list), selection_mode = 'single', default = 'Tech')
-  
+    if sector == 'Real Estate':
+        sector = 'Real_Estate'
+        
     tables = []
     names = []
     
