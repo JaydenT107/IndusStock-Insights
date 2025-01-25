@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 
 def date_selectbox():
     end_date = datetime.now()
-   
+    period = '3 Months'
     period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single')
 
     if period == '3 Months':
@@ -43,7 +43,7 @@ def get_data():
     sector_string = response['Body'].read().decode('utf-8')
 
     sector_list = sector_string.split(', ')
-    
+
     sday, eday , AI_description_txt, date_format = date_selectbox()
 
     sector = st.sidebar.selectbox('Select Industry', set(sector_list))
