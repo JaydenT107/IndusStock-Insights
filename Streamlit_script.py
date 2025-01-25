@@ -7,6 +7,10 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 st.set_page_config(layout="wide", page_title = "IndusStock Insight")
+st.header('**IndusStock Insight**')
+st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
+The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
+
 
 def date_selectbox():
     
@@ -141,10 +145,7 @@ def first_part():
     return name,data,sday,eday,date_format 
 
 def second_part():
-    st.header('**IndusStock Insight**')
-    st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
-    The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
-
+    
     name,data,sday,eday,date_format  = first_part()
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
