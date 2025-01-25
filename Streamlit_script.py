@@ -52,7 +52,7 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
 
     
 
-    sector = st.sidebar.selectbox('Select Industry', set(sector_list))
+    sector = st.selectbox('Select Industry', set(sector_list))
   
     tables = []
     names = []
