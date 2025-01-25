@@ -28,7 +28,9 @@ def date_selectbox():
         return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
 
 def get_data():
-    sday, eday , AI_description_txt, date_format = date_selectbox()
+    col1, col2, col3 = st.columns([3,3,3])
+    with col1:
+        sday, eday , AI_description_txt, date_format = date_selectbox()
 
     s3 = boto3.client(
         's3',
