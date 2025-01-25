@@ -117,7 +117,6 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'])
-    fig.update_traces(marker = dict(color = 'white'))
     return fig
 
 
@@ -174,4 +173,5 @@ def second_part():
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
+        st.write(data['Volume'].mean())
 second_part()
