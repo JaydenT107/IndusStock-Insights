@@ -32,6 +32,8 @@ def date_selectbox():
         return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
 
 def get_data():
+    sday, eday , AI_description_txt, date_format = date_selectbox()
+    
     s3 = boto3.client(
         's3',
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
@@ -49,7 +51,7 @@ def get_data():
     tables = []
     names = []
     
-    sday, eday , AI_description_txt, date_format = date_selectbox()
+   
 
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/{AI_description_txt}')
     AI_description = data_response['Body'].read().decode('utf-8')
