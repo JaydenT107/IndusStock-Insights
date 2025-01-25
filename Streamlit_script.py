@@ -52,7 +52,7 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
 
     
 
-    sector = st.pills('Select Industry', set(sector_list), selection_mode = 'single', default = 'Tech')
+    sector = st.pills('**Tags**', set(sector_list), selection_mode = 'single', default = 'Tech')
   
     tables = []
     names = []
