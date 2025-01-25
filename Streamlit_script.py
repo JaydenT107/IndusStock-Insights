@@ -88,6 +88,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
     fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = check_color(filtered_data) ))
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
+    dragmode = 'static',
     title=name,  
     title_x=0.5,            
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
