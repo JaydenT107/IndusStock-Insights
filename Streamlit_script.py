@@ -116,7 +116,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
 def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
-    fig = px.scatter(filtered_data, x = 'Volume', y = 'Close')
+    fig = px.scatter(filtered_data, x = 'Volume', y = 'Close', hover_data = ['Date'])
     return fig
 
 
