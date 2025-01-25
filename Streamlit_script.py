@@ -19,17 +19,17 @@ def date_selectbox():
     if period == '3 Months':
 
         start_date = end_date - relativedelta(months=3)
-        return [start_date,end_date,'3_Months_AI_analysis.txt', '3 months']
+        return start_date,end_date,'3_Months_AI_analysis.txt', '3 months'
 
     elif period == '1 Month':
 
         start_date = end_date - relativedelta(months=1)
-        return [start_date,end_date, 'Monthly_AI_analysis.txt', '1 month']
+        return start_date,end_date, 'Monthly_AI_analysis.txt', '1 month'
 
     elif period == '1 Week':
 
         start_date = end_date - relativedelta(weeks=1)
-        return [start_date,end_date, 'Weekly_AI_analysis.txt', '1 week']
+        return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
 
 def get_data():
     s3 = boto3.client(
