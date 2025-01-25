@@ -119,7 +119,7 @@ def date_format_func(data):
 def first_part():
     
     col1, col2, col3 = st.columns([3,3,3])
-    st.markdown("""<style>.fixed-height {height: 310px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
+    st.markdown("""<style>.fixed-height {height: 350px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
     data,name,sector,AI_description, sday,eday, date_format = get_data()
     if "_" in sector:
