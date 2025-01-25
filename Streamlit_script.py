@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-import numpy
+import numpy as np
 
 st.set_page_config(layout="wide", page_title = "IndusStock Insight")
 st.header('**IndusStock Insight**')
