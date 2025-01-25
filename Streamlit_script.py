@@ -9,8 +9,10 @@ from dateutil.relativedelta import relativedelta
 
 
 def date_selectbox():
+    col1, col2, col3 = st.columns([3,3,3])
     end_date = datetime.now()
-    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single')
+    with col1:
+        period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single')
 
     if period == '3 Months':
 
@@ -28,9 +30,9 @@ def date_selectbox():
         return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
 
 def get_data():
-    col1, col2, col3 = st.columns([3,3,3])
-    with col1:
-        sday, eday , AI_description_txt, date_format = date_selectbox()
+    
+   
+    sday, eday , AI_description_txt, date_format = date_selectbox()
 
     s3 = boto3.client(
         's3',
