@@ -118,8 +118,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
-    filtered_data['Hightlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relativedelta(days = 7)),'Last 7 Days', 'Older')
-
+    filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relativedelta(days = 7)),'Last 7 Days', 'Older')
     average = filtered_data['Volume'].mean()
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight')
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'red', annotation_text = 'Average')
