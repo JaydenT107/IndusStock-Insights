@@ -6,10 +6,6 @@ import plotly.express as px
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-st.set_page_config(layout="wide", page_title = "IndusStock Insight")
-st.header('**IndusStock Insight**')
-st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
-The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
 
 
 def date_selectbox():
@@ -33,7 +29,7 @@ def date_selectbox():
 
 def get_data():
     sday, eday , AI_description_txt, date_format = date_selectbox()
-    
+
     s3 = boto3.client(
         's3',
         aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
@@ -111,6 +107,11 @@ def date_format_func(data):
 
 
 def first_part():
+    st.set_page_config(layout="wide", page_title = "IndusStock Insight")
+    st.header('**IndusStock Insight**')
+    st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
+    The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
+
     col1, col2, col3 = st.columns([3,3,3])
     st.markdown("""<style>.fixed-height {height: 310px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
