@@ -122,6 +122,15 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     average = filtered_data['Volume'].mean()
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={'Last 7 Days': 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'red', annotation_text = 'Average')
+    fig.update_layout(
+    dragmode = False,
+    title=name,  
+    title_x=0.5,            
+    title_font=dict(size=24, family='Soin Sans Pro', color='white'),
+    width = 600,
+    height = 400,
+)
+
     return fig
 
 
