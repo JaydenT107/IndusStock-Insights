@@ -98,7 +98,8 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
     close_max = filtered_data['Close'].max()
     fig = px.line(filtered_data,x = 'Date' , y = 'Close')
     fig.update_yaxes(range=[close_min,close_max], title = None)
-    fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = check_color(filtered_data) ))
+    line_color = check_color(filtered_data)
+    fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = line_color ))
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
     dragmode = False,
@@ -111,7 +112,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
 )
     
 
-    return fig
+    return [fig,line_color]
 
 
 def scatter_plot(data,name,sday,eday,date_format,new_title=None):
@@ -158,14 +159,14 @@ def first_part():
         
         for i in range(0,2):
             st.write(" ")
-            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format),use_container_width = False, config = {'displayModeBar' : False})
+            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0],use_container_width = False, config = {'displayModeBar' : False})
             
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
         st.write(" ")
-        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})  
+        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})  
 
     with col3:
         for i in range(2,5):
@@ -173,7 +174,7 @@ def first_part():
                 continue
             else:
                 st.write(" ")
-                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})
+                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
 def second_part():
@@ -185,6 +186,6 @@ def second_part():
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
