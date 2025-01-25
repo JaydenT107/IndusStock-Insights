@@ -126,7 +126,7 @@ def first_part():
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format), use_container_width = False)  
+        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})  
 
     with col3:
         for i in range(2,5):
