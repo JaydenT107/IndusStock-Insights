@@ -15,8 +15,7 @@ The platform generates interactive charts and provides intelligent recommendatio
 def date_selectbox():
     
     end_date = datetime.now()
-    period = '3 Months'
-    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single')
+    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', value = '3 Months')
 
     if period == '3 Months':
 
@@ -33,7 +32,9 @@ def date_selectbox():
         start_date = end_date - relativedelta(weeks=1)
         return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
 
-def get_data():
+gsday, geday , gAI_description_txt, gdate_format = date_selectbox()
+
+def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format):
     
     
 
@@ -49,7 +50,7 @@ def get_data():
 
     sector_list = sector_string.split(', ')
 
-    sday, eday , AI_description_txt, date_format = date_selectbox()
+    
 
     sector = st.sidebar.selectbox('Select Industry', set(sector_list))
   
