@@ -124,8 +124,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'red', annotation_text = 'Average')
     fig.update_layout(
     dragmode = False,
-    title='Correlation Between Trading Volume and Closing Price',  
-    title_x=0.5,            
+    title='Correlation Between Trading Volume and Closing Price',            
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
