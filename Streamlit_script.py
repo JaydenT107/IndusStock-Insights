@@ -15,7 +15,7 @@ The platform generates interactive charts and provides intelligent recommendatio
 def date_selectbox():
     
     end_date = datetime.now()
-    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
+    period = st.segmented_control('**Select Time Period**', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
 
     if period == '3 Months':
 
@@ -119,7 +119,7 @@ def date_format_func(data):
 def first_part():
     
     col1, col2, col3 = st.columns([3,3,3])
-    st.markdown("""<style>.fixed-height {height: 330px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
+    st.markdown("""<style>.fixed-height {height: 320px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
     data,name,sector,AI_description, sday,eday, date_format = get_data()
     if "_" in sector:
