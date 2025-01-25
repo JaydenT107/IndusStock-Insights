@@ -15,7 +15,7 @@ The platform generates interactive charts and provides intelligent recommendatio
 def date_selectbox():
     
     end_date = datetime.now()
-    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', value = '3 Months')
+    period = st.segmented_control('Select Time Period', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
 
     if period == '3 Months':
 
