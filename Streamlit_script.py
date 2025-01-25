@@ -129,12 +129,14 @@ def first_part():
     with col2:
         
         for i in range(0,2):
+            st.write(" ")
             st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format),use_container_width = False, config = {'displayModeBar' : False})
             
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
+        st.write(" ")
         st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})  
 
     with col3:
@@ -142,6 +144,7 @@ def first_part():
             if i == 3:
                 continue
             else:
+                st.write(" ")
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
