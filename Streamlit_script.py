@@ -120,7 +120,7 @@ def first_part():
     with col2:
         
         for i in range(0,2):
-            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format),use_container_width = False)
+            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format),use_container_width = False, config = {'displayModeBar' : False})
             
 
     with col1:
@@ -133,7 +133,7 @@ def first_part():
             if i == 3:
                 continue
             else:
-                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False)
+                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format), use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
 def second_part():
@@ -143,6 +143,6 @@ def second_part():
     with col1:
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True)
+        st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
 
 second_part()
