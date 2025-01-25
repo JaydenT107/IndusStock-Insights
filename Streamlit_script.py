@@ -30,7 +30,7 @@ def date_selectbox():
 
 def get_data():
     
-    sday, eday , AI_description_txt, date_format = date_selectbox()
+    
 
     s3 = boto3.client(
         's3',
@@ -43,6 +43,8 @@ def get_data():
     sector_string = response['Body'].read().decode('utf-8')
 
     sector_list = sector_string.split(', ')
+    
+    sday, eday , AI_description_txt, date_format = date_selectbox()
 
     sector = st.sidebar.selectbox('Select Industry', set(sector_list))
   
