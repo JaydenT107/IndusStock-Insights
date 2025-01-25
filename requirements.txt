@@ -4,3 +4,4 @@ streamlit
 plotly
 datetime
 python-dateutil
+numpy
