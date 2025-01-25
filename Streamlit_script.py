@@ -57,7 +57,7 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
     sector = st.pills('**Tags**', set(tags_sector_list), selection_mode = 'single', default = 'Tech')
     if sector == 'Real Estate':
         sector = 'Real_Estate'
-        
+
     tables = []
     names = []
     
@@ -96,7 +96,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
     close_min = filtered_data['Close'].min()
     close_max = filtered_data['Close'].max()
     fig = px.line(filtered_data,x = 'Date' , y = 'Close')
-    fig.update_yaxes(range=[close_min,close_max])
+    fig.update_yaxes(range=[close_min,close_max], title = None)
     fig.update_traces(x = filtered_data['Date'][::-1], y = filtered_data['Close'][::-1] , line = dict(color = check_color(filtered_data) ))
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
@@ -111,6 +111,16 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
     
 
     return fig
+
+
+def scatter_plot(data,name,sday,eday,date_format,new_title=None):
+    data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
+    filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
+    fig = px.scatter(filtered_data, x = 'Volume', y = 'Close')
+    return fig
+
+
+
 
 def date_format_func(data):
     if data == '3 months':
@@ -154,12 +164,13 @@ def first_part():
 
 def second_part():
     
-    name,data,sday,eday,date_format  = first_part()
+    name,output_data,sday,eday,date_format  = first_part()
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
+        data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data[name.index(stock_name)],sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
-
+        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
