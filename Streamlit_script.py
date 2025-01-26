@@ -101,7 +101,7 @@ def check_color(data):
     elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
-def line_chart(data,name,sday,eday,date_format,new_title=None):
+def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = False):
     if name == None:
         name = new_title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
@@ -122,6 +122,17 @@ def line_chart(data,name,sday,eday,date_format,new_title=None):
     height = 400,
     xaxis = dict(tickformat = date_format_func(date_format))
 )
+    if add_trendline == True:
+        
+        filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
+        line_color_2 = check_color(filtered_data_2)
+        line_start_date = filtered_data_2.iloc[0]['Date']
+        line_start_value = filtered_data_2.iloc[0]['Close']
+        line_end_date = filtered_data_2.iloc[-1]['Date']
+        line_end_value = filtered_data_2.iloc[-1]['Close']
+
+        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_start_value, line = dict(color = line_color_2, width = 2))
+
     
 
     return [fig,line_color]
@@ -224,6 +235,6 @@ def second_part():
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None)[0], use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
