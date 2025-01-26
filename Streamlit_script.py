@@ -7,7 +7,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
 
-s3 = boto3.client(
+s3client = boto3.client(
     's3',
     aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
     aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
@@ -70,7 +70,7 @@ def get_sector_func():
 
     return sector
 
-def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func):
+def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func, s3 = s3client):
 
     tables = []
     names = []
