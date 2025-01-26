@@ -7,6 +7,13 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
 
+s3 = boto3.client(
+    's3',
+    aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
+    region_name=st.secrets.get("AWS_DEFAULT_REGION", "us-east-2")
+)
+
 st.set_page_config(layout="wide", page_title = "IndusStock Insight")
 st.header('**IndusStock Insight**')
 st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
@@ -47,17 +54,7 @@ def date_selectbox():
 
 gsday, geday , gAI_description_txt, gdate_format = date_selectbox()
 
-def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format):
-    
-    
-
-    s3 = boto3.client(
-        's3',
-        aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
-        aws_secret_access_key=st.secrets["AWS_SECRET_ACCESS_KEY"],
-        region_name=st.secrets.get("AWS_DEFAULT_REGION", "us-east-2")
-    )
-
+def get_sector_func():
     response = s3.get_object(Bucket='stocksectordata', Key='sector_list.txt')
     sector_string = response['Body'].read().decode('utf-8')
 
@@ -71,11 +68,13 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
     if sector == 'Real Estate':
         sector = 'Real_Estate'
 
+        return sector
+
+def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func):
+
     tables = []
     names = []
     
-   
-
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/{AI_description_txt}')
     AI_description = data_response['Body'].read().decode('utf-8')
 
