@@ -5,4 +5,3 @@ plotly
 datetime
 python-dateutil
 numpy
-random
