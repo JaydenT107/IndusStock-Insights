@@ -116,7 +116,6 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     fig.update_layout(
     dragmode = False,
     title=name,
-    title_font = dict(color = 'yellow'),
     title_x=0.5,            
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
