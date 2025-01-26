@@ -238,7 +238,7 @@ def second_part():
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
-        st.markdown(f"<h1 style='font-size: 20px; color: white;'>{stock_name.title()}</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 20px; color: white;'>{date_format.title()}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
