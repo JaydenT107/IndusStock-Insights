@@ -150,7 +150,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
 
 def date_format_func(data):
-    if data == '3 months' or data == '6 months' or data = '1 year':
+    if data == '3 months' or data == '6 months' or data == '1 year':
         return '%b %Y'
     elif data == '1 month' or data == '1 week':
         return '%d/%m/%y'
