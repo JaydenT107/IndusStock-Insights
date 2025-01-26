@@ -133,7 +133,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
 
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
         fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = -50 , ay = -30, borderwidth = 0.1)
-        fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = -50 , ay = 30, borderwidth = 0.1)
+        fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = -50 , ay = 30, borderwidth = 0.1, color = 'yellow')
     
 
     return [fig,line_color]
