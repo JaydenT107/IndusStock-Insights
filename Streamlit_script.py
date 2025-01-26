@@ -102,6 +102,7 @@ def check_color(data):
         return '#FFFF00'
     
 def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = False):
+    st.write(name)
     if name == None:
         name = new_title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
