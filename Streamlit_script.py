@@ -135,7 +135,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
     filtered_data['Volume_Period'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),filtered_data['Volume'], np.nan)
 
-    average_period = filtered_data['Close_Period'].mean()
+    average_period = filtered_data['Volume_Period'].mean()
 
     average = filtered_data['Volume'].mean()
 
