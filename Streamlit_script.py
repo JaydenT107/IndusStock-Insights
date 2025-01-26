@@ -151,7 +151,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title: 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'solid', line_color = 'yellow', name = 'Avg Volume' , showlegend = True)
-    fig.add_hline(y = average_period, line_dash = 'dash', line_color = avg_line_color, name = 'Avg Volume: 3 Months', showlegend = True)
+    fig.add_hline(y = average_period, line_dash = 'dash', line_color = avg_line_color, name = f'Avg Volume: {relative_title}', showlegend = True)
     fig.update_xaxes(title = 'Price')
     fig.update_layout(
     dragmode = False,
