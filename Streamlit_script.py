@@ -66,7 +66,7 @@ def get_sector_func(s3 = s3client):
     tags_sector_list[tags_sector_list.index('Real_Estate')] = 'Real Estate'
 
     sector = 'Tech'    
-    sector = st_navbar(set(tags_sector_list),default = 'Tech')
+    sector = st_navbar(set(tags_sector_list))
     if sector == 'Real Estate':
         sector = 'Real_Estate'
 
