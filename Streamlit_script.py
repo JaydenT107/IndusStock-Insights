@@ -16,9 +16,6 @@ s3client = boto3.client(
 )
 
 st.set_page_config(layout="wide", page_title = "IndusStock Insight")
-st.header('**IndusStock Insight**')
-st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
-The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
 
 
 def date_selectbox():
@@ -73,6 +70,9 @@ def get_sector_func(s3 = s3client):
     return sector
 
 def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func(), s3 = s3client):
+    st.header('**IndusStock Insight**')
+    st.write("""IndusStock Insights is an AI-powered platform that helps investors make informed decisions by identifying the top 5 stocks in a specific industry. It pulls real-time data through a stock API and uses advanced machine learning to analyze market trends and company performance.
+The platform generates interactive charts and provides intelligent recommendations, guiding users on whether to buy, hold, or avoid stocks based on data-driven insights. With its combination of real-time analysis and AI forecasts, IndusStock Insights empowers users to navigate the stock market confidently and optimize their investments.""")
 
     tables = []
     names = []
