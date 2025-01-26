@@ -131,7 +131,8 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
-    filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relativedelta(days = 7)),'Last 7 Days', 'Older')
+    relative_date,relative_title = date_format_func2(date_format)
+    filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
     average = filtered_data['Volume'].mean()
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={'Last 7 Days': '#FF2800', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'yellow', annotation_text = 'Average')
@@ -155,6 +156,14 @@ def date_format_func(data):
         return '%b %Y'
     elif data == '1 month' or data == '1 week':
         return '%d/%m/%y'
+
+def date_format_func2(data):
+    if data == '1 year':
+        return [relativedelta(months = 3), 'Last 3 Months']
+    elif data == '6 months':
+        return [relativedelta(months = 1), 'Last 1 Month']
+    elif data == '3 months' or data == '1 month' or data == '1 week':
+        return [relativedelta(weeks = 1 ), 'Last 7 Days']
 
 
 
