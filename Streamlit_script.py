@@ -197,11 +197,11 @@ def first_part():
             else:
                 st.write(" ")
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})
-    return data
+    return data,name
 
 def second_part():
     
-    output_data = first_part()
+    output_data,name = first_part()
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
