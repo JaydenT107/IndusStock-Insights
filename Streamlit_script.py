@@ -138,7 +138,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     average_period = filtered_data['Close_Period'].mean()
 
     average = filtered_data['Volume'].mean()
-
+    st.write(average_period)
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title: 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'yellow', annotation_text = 'Average')
     fig.add_hline(y = average_period, line_dash = 'dash', line_color = 'blue', annotation_text = 'Average2')
