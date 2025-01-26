@@ -6,7 +6,7 @@ import plotly.express as px
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
-
+import random 
 s3client = boto3.client(
     's3',
     aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
@@ -130,10 +130,10 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
         line_start_value = filtered_data_2.iloc[0]['Close']
         line_end_date = filtered_data_2.iloc[-1]['Date']
         line_end_value = filtered_data_2.iloc[-1]['Close']
-
+        random_ax = random.randint(-50,50)
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
-        fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = -50 , ay = -30, borderwidth = 0.1, arrowcolor = 'yellow')
-        fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = -50 , ay = 30, borderwidth = 0.1, arrowcolor = 'yellow')
+        fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax , ay = random_ax, borderwidth = 0.1, arrowcolor = 'yellow')
+        fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax , ay = random_ax, borderwidth = 0.1, arrowcolor = 'yellow')
     
 
     return [fig,line_color]
