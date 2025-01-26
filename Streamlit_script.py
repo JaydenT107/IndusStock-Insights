@@ -133,7 +133,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     relative_date,relative_title = date_format_func2(date_format)
     filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
-    filtered_data['Close_Period'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),filtered_data['Close'], None)
+    filtered_data['Close_Period'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),filtered_data['Close'], np.nan)
 
     average_period = filtered_data['Close_Period'].mean()
 
