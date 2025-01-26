@@ -6,6 +6,7 @@ import plotly.express as px
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
+from streamlit_navigation_bar import st_navbar
 
 s3client = boto3.client(
     's3',
@@ -65,7 +66,7 @@ def get_sector_func(s3 = s3client):
     tags_sector_list[tags_sector_list.index('Real_Estate')] = 'Real Estate'
 
     
-    sector = st.segmented_control('**Select Sector**', set(tags_sector_list), selection_mode = 'single', default = 'Tech')
+    sector = st_navbar(set(tags_sector_list))
     if sector == 'Real Estate':
         sector = 'Real_Estate'
 
