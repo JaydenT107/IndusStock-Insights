@@ -123,7 +123,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     xaxis = dict(tickformat = date_format_func(date_format))
 )
     if add_trendline == True:
-        
+        relative_date,_ = date_format_func2(date_format)
         filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
         line_color_2 = check_color(filtered_data_2)
         line_start_date = filtered_data_2.iloc[0]['Date']
