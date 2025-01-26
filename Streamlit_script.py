@@ -16,7 +16,7 @@ The platform generates interactive charts and provides intelligent recommendatio
 def date_selectbox():
     
     end_date = datetime.now()
-    period = st.segmented_control('**Select Time Period**', ['3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
+    period = st.segmented_control('**Select Time Period**', ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
 
     if period == '3 Months':
 
@@ -32,6 +32,18 @@ def date_selectbox():
 
         start_date = end_date - relativedelta(weeks=1)
         return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
+
+    elif period == '6 Months':
+
+        start_date = end_date - relativedelta(months = 6)
+        return start_date,end_date, '6_Months_AI_analysis.txt', '6 months'
+
+    elif period == '1 Year':
+
+        start_date = end_date - relativedelta(years=1)
+        return start_date,end_date, '1_Year_AI_analysis.txt', '1 year'
+
+    
 
 gsday, geday , gAI_description_txt, gdate_format = date_selectbox()
 
@@ -138,9 +150,9 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
 
 def date_format_func(data):
-    if data == '3 months':
+    if data == '3 months' or data == '6 months' or data = '1 year':
         return '%b %Y'
-    elif data == '1 month' or '1 week':
+    elif data == '1 month' or data == '1 week':
         return '%d/%m/%y'
 
 
