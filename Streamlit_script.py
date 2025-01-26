@@ -159,7 +159,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
-     legend=dict( x=0.98,  y=0.98, title = None, borderwidth = 0.3)
+     legend=dict( x=0.7,  y=0.98, title = None, borderwidth = 0.3)
 )
 
     return fig
