@@ -65,7 +65,7 @@ def get_sector_func(s3 = s3client):
     tags_sector_list[tags_sector_list.index('Real_Estate')] = 'Real Estate'
 
     
-    sector = st.pills('**Tags**', set(tags_sector_list), selection_mode = 'single', default = 'Tech')
+    sector = st.segmented_control('**Select Sector**', set(tags_sector_list), selection_mode = 'single', default = 'Tech')
     if sector == 'Real Estate':
         sector = 'Real_Estate'
 
@@ -234,7 +234,7 @@ def second_part():
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
-        stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
+        stock_name = st.seg('Select a Stock for Detailed Analysis',name)
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
