@@ -140,9 +140,11 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     average = filtered_data['Volume'].mean()
 
     if average_period > average:
-        return avg_line_color = '#40FF00'
+        avg_line_color = '#40FF00'
+        return avg_line_color
     else:
-        return avg_line_color = '#FF2800'
+        avg_line_color = '#FF2800'
+        return avg_line_color
 
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title: 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'yellow', annotation_text = 'Average')
