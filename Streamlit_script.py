@@ -134,7 +134,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     relative_date,relative_title = date_format_func2(date_format)
     filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
     average = filtered_data['Volume'].mean()
-    fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={'Last 7 Days': '#FF2800', 'Older': 'light blue'})
+    fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={'Last 7 Days': 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'yellow', annotation_text = 'Average')
     fig.update_xaxes(title = 'Price')
     fig.update_layout(
