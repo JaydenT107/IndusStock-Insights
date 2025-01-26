@@ -120,8 +120,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
-    xaxis = dict(tickformat = date_format_func(date_format)),
-    legend=dict( x=0.75,  y=0.98, title = None, borderwidth = 0.3)
+    xaxis = dict(tickformat = date_format_func(date_format))
 )
     if add_trendline == True:
         relative_date,relative_title= date_format_func2(date_format)
@@ -132,7 +131,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
         line_end_date = filtered_data_2.iloc[-1]['Date']
         line_end_value = filtered_data_2.iloc[-1]['Close']
 
-        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'), showlegend = True, name = 'Close: ' + relative_title)
+        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
 
     
 
