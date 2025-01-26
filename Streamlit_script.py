@@ -55,6 +55,7 @@ def date_selectbox():
 gsday, geday , gAI_description_txt, gdate_format = date_selectbox()
 
 def get_sector_func():
+
     response = s3.get_object(Bucket='stocksectordata', Key='sector_list.txt')
     sector_string = response['Body'].read().decode('utf-8')
 
@@ -70,7 +71,7 @@ def get_sector_func():
 
     return sector
 
-def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func, s3 = s3client):
+def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func(), s3 = s3client):
 
     tables = []
     names = []
