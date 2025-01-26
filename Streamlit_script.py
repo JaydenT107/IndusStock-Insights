@@ -115,7 +115,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     fig.update_xaxes(nticks = 5)
     fig.update_layout(
     dragmode = False,
-    title=name 
+    title=name,
     title_x=0.5,            
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
