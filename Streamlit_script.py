@@ -186,10 +186,12 @@ def date_format_func(data):
 
 def date_format_func2(data):
     if data == '1 year':
-        return [relativedelta(months = 3), 'Last 3 Months']
+        return [relativedelta(months = 6), 'Last 6 Months']
     elif data == '6 months':
+        return [relativedelta(months = 3), 'Last 3 Month']
+    elif data == '3 months' 
         return [relativedelta(months = 1), 'Last 1 Month']
-    elif data == '3 months' or data == '1 month' or data == '1 week':
+    elif data == '1 month' or data == '1 week':
         return [relativedelta(weeks = 1 ), 'Last 7 Days']
 
 
