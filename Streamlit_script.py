@@ -121,7 +121,7 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     width = 600,
     height = 400,
     xaxis = dict(tickformat = date_format_func(date_format)),
-    titlefont = dict(color = 'yellow')
+    title_font = dict(color = 'yellow')
 )
     if add_trendline == True:
         relative_date,relative_title= date_format_func2(date_format)
