@@ -88,6 +88,7 @@ def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_tx
         df = pd.read_csv(StringIO(data))
         tables.append(df)
         names.append(name)
+        st.write(names)
     return [tables,names,sector, AI_description, sday,eday, date_format]
 
 
@@ -102,7 +103,6 @@ def check_color(data):
         return '#FFFF00'
     
 def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = False):
-    st.write(name)
     if name == None:
         name = new_title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
