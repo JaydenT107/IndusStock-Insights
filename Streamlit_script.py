@@ -134,7 +134,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
     relative_date,relative_title = date_format_func2(date_format)
     filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
     average = filtered_data['Volume'].mean()
-    fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title : 'red', 'Older': 'light blue'})
+    fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title: 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'dash', line_color = 'yellow', annotation_text = 'Average')
     fig.update_xaxes(title = 'Price')
     fig.update_layout(
@@ -197,16 +197,15 @@ def first_part():
             else:
                 st.write(" ")
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})
-    return data,name
+    return name,data,sday,eday,date_format 
 
 def second_part():
     
-    output_data,name = first_part()
+    name,output_data,sday,eday,date_format  = first_part()
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
-        sday, eday , _, date_format = date_selectbox()
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color: white;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None)[0], use_container_width = True, config = {'displayModeBar' : False})
