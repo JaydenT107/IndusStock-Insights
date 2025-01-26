@@ -68,7 +68,7 @@ def get_sector_func():
     if sector == 'Real Estate':
         sector = 'Real_Estate'
 
-        return sector
+    return sector
 
 def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = get_sector_func):
 
