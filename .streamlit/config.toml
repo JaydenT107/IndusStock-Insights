@@ -1,5 +1,5 @@
 [theme]
-primaryColor = "blue"
+primaryColor = "#00FFFF"
 backgroundColor = "#000000"  # Set background to black
 secondaryBackgroundColor = "#1e1e1e"  # Dark gray for sidebar background
 textColor = "#ffffff"  # White text
