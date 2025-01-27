@@ -181,7 +181,10 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
+    average = filtered_data['Volatility'].mean()
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility')
+
+    fig.add_hline(y = average, line_color = 'yellow')
 
     return fig
 
