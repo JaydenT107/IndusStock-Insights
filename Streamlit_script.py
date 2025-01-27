@@ -213,7 +213,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
     dragmode = False,
     title = 'Volatility',
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
-    legend=dict( x=0.78,  y=0.98, title = None, borderwidth = 0.3)
+    legend=dict( x=0.77,  y=0.98, title = None, borderwidth = 0.3)
     )
 
     return fig
