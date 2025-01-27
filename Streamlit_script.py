@@ -143,9 +143,17 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_low, x1 = line_end_date, y1 = line_end_low, line = dict(color = 'yellow', width = 2, dash = 'dash'))
         fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
         fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax2 , ay = random_ax1, borderwidth = 0.1, arrowcolor = 'yellow')
-        
+
 
     return [fig,line_color]
+
+def check_average(average_period,average):
+    if average_period > average:
+        avg_line_color = '#40FF00'
+        return avg_line_color
+    else:
+        avg_line_color = '#FF2800'
+        return avg_line_color
 
 
 def scatter_plot(data,name,sday,eday,date_format, date_format_2,new_title=None):
@@ -160,13 +168,6 @@ def scatter_plot(data,name,sday,eday,date_format, date_format_2,new_title=None):
 
     average = filtered_data['Volume'].mean()
     
-    def check_average(average_period,average):
-        if average_period > average:
-            avg_line_color = '#40FF00'
-            return avg_line_color
-        else:
-            avg_line_color = '#FF2800'
-            return avg_line_color
 
     avg_line_color = check_average(average_period,average)
 
@@ -189,13 +190,23 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
 
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
+
+    relative_date,relative_title= date_format_func2(date_format_2)
+
+    filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
+
+    average_period = filtered_data_2['Volatility'].mean()
     average = filtered_data['Volatility'].mean()
+
+    
+    avg_line_color = check_average(average,average_period)
 
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting')
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
+    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = 'Average')
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
