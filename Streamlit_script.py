@@ -181,7 +181,7 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
-    fig = px.line(filtered_data, x = 'Date', y = 'Volatility', line_shape = 'spline')
+    fig = px.bar(filtered_data, x = 'Date', y = 'Volatility')
 
     return fig
 
