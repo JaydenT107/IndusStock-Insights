@@ -195,6 +195,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
     filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
+    filtered_data_2['Volatility'] = filtered_data_2['High'] - filtered_data_2['Low']
 
     average_period = filtered_data_2['Volatility'].mean()
     average = filtered_data['Volatility'].mean()
