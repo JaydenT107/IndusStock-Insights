@@ -183,11 +183,10 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
     average = filtered_data['Volatility'].mean()
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
-    fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting', color_discrete_map = {'Higher' : 'blue' , 'Lower' : 'orange'})
+    fig = px.area(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting', color_discrete_map = {'Higher' : 'blue' , 'Lower' : 'orange'})
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
     fig.update_layout(
-    barmode = 'stack',
     dragmode = False,
     title = 'Volatility',
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
