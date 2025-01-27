@@ -101,7 +101,7 @@ def check_color(data):
     elif data.iloc[-1]['Close'] == data.iloc[0]['Close']:
         return '#FFFF00'
     
-def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = False):
+def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, add_trendline = False):
     if name == None:
         name = new_title
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
@@ -120,10 +120,10 @@ def line_chart(data,name,sday,eday,date_format,new_title=None, add_trendline = F
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
-    xaxis = dict(tickformat = date_format_func(date_format))
+    xaxis = dict(tickformat = date_format_func(date_format_2))
 )
     if add_trendline == True:
-        relative_date,relative_title= date_format_func2(date_format)
+        relative_date,relative_title= date_format_func2(date_format_2)
         filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
         line_color_2 = check_color(filtered_data_2)
         line_start_date = filtered_data_2.iloc[0]['Date']
@@ -179,9 +179,11 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
 def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
+
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
     average = filtered_data['Volatility'].mean()
+
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting')
 
@@ -205,13 +207,13 @@ def date_format_func(data):
         return '%d/%m/%y'
 
 def date_format_func2(data):
-    if data == '1 Year':
+    if data == '6 Months':
         return [relativedelta(months = 6), 'Last 6 Months']
-    elif data == '6 Months':
-        return [relativedelta(months = 3), 'Last 3 Month']
     elif data == '3 Months':
+        return [relativedelta(months = 3), 'Last 3 Month']
+    elif data == '1 Months':
         return [relativedelta(months = 1), 'Last 1 Month']
-    elif data == '1 Month' or data == '1 Week':
+    elif data == '7 Days' or data == '1 Week':
         return [relativedelta(weeks = 1 ), 'Last 7 Days']
 
 
@@ -257,11 +259,14 @@ def second_part():
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
         date_format_copy = date_format[:]
-        date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
+        try:
+            date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
+        except IndexError:
+            date_format_2 = '1 Week'
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()}</span></h1>", unsafe_allow_html=True)
-        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
-        st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
