@@ -162,14 +162,6 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     avg_line_color = check_average(average_period,average)
 
-
-def bar_chart(data,name,sday,eday,date_format,new_title=None):
-    data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
-    filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
-    filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
-    return filtered_data['Volatility']
-
-
     fig = px.scatter(filtered_data, x = 'Close', y = 'Volume', hover_data = ['Date'], color = 'Highlight', color_discrete_map={relative_title: 'red', 'Older': 'light blue'})
     fig.add_hline(y = average, line_dash = 'solid', line_color = 'yellow', name = 'Avg Volume' , showlegend = True)
     fig.add_hline(y = average_period, line_dash = 'dash', line_color = avg_line_color, name = f'Avg Volume: {relative_title}', showlegend = True)
@@ -185,6 +177,11 @@ def bar_chart(data,name,sday,eday,date_format,new_title=None):
 
     return fig
 
+def bar_chart(data,name,sday,eday,date_format,new_title=None):
+    data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
+    filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
+    filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
+    st.write(filtered_data['Volatility'])
 
 
 
@@ -251,6 +248,5 @@ def second_part():
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
     with col2:
-        vola = bar_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None)
-        st.write(vola)
+        bar_chart()
 second_part()
