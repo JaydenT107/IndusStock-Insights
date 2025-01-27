@@ -28,27 +28,27 @@ def date_selectbox():
     if period == '3 Months':
 
         start_date = end_date - relativedelta(months=3)
-        return start_date,end_date,'3_Months_AI_analysis.txt', '3 months'
+        return start_date,end_date,'3_Months_AI_analysis.txt', '3 Months'
 
     elif period == '1 Month':
 
         start_date = end_date - relativedelta(months=1)
-        return start_date,end_date, 'Monthly_AI_analysis.txt', '1 month'
+        return start_date,end_date, 'Monthly_AI_analysis.txt', '1 Month'
 
     elif period == '1 Week':
 
         start_date = end_date - relativedelta(weeks=1)
-        return start_date,end_date, 'Weekly_AI_analysis.txt', '1 week'
+        return start_date,end_date, 'Weekly_AI_analysis.txt', '1 Week'
 
     elif period == '6 Months':
 
         start_date = end_date - relativedelta(months = 6)
-        return start_date,end_date, '6_Months_AI_analysis.txt', '6 months'
+        return start_date,end_date, '6_Months_AI_analysis.txt', '6 Months'
 
     elif period == '1 Year':
 
         start_date = end_date - relativedelta(years=1)
-        return start_date,end_date, '1_Year_AI_analysis.txt', '1 year'
+        return start_date,end_date, '1_Year_AI_analysis.txt', '1 Year'
 
     
 
@@ -199,19 +199,19 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
 
 
 def date_format_func(data):
-    if data == '3 months' or data == '6 months' or data == '1 year':
+    if data == '3 Months' or data == '6 Months' or data == '1 Year':
         return '%b %Y'
-    elif data == '1 month' or data == '1 week':
+    elif data == '1 Month' or data == '1 Week':
         return '%d/%m/%y'
 
 def date_format_func2(data):
-    if data == '1 year':
+    if data == '1 Year':
         return [relativedelta(months = 6), 'Last 6 Months']
-    elif data == '6 months':
+    elif data == '6 Months':
         return [relativedelta(months = 3), 'Last 3 Month']
-    elif data == '3 months':
+    elif data == '3 Months':
         return [relativedelta(months = 1), 'Last 1 Month']
-    elif data == '1 month' or data == '1 week':
+    elif data == '1 Month' or data == '1 Week':
         return [relativedelta(weeks = 1 ), 'Last 7 Days']
 
 
