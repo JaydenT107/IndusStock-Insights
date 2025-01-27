@@ -248,5 +248,5 @@ def second_part():
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
     with col2:
-        bar_chart()
+        bar_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None)
 second_part()
