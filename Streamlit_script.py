@@ -177,7 +177,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     return fig
 
-def volitality_chart(data,name,sday,eday,date_format,new_title=None):
+def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
@@ -249,5 +249,5 @@ def second_part():
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()}</span></h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None), use_container_width = True, config = {'displayModeBar' : False})
-        st.plotly_chart(bar_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
+        st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None), use_container_width = True, config = {'displayModeBar' : False})
 second_part()
