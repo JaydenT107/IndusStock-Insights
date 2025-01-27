@@ -53,7 +53,7 @@ def date_selectbox():
     
 
 def get_sector_func(s3 = s3client):
-
+    col1 , col2 = st.columns(2)
     response = s3.get_object(Bucket='stocksectordata', Key='sector_list.txt')
     sector_string = response['Body'].read().decode('utf-8')
 
@@ -62,10 +62,10 @@ def get_sector_func(s3 = s3client):
     tags_sector_list = sector_list.copy()
     tags_sector_list[tags_sector_list.index('Real_Estate')] = 'Real Estate'
 
-    
-    sector = st.selectbox('**Select Sector**', set(tags_sector_list))
-    if sector == 'Real Estate':
-        sector = 'Real_Estate'
+    with col1:
+        sector = st.selectbox('**Select Sector**', set(tags_sector_list))
+        if sector == 'Real Estate':
+            sector = 'Real_Estate'
 
     return sector
 
