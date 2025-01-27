@@ -207,13 +207,13 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting')
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
-    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Average: {relative_title}')
+    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Average: {relative_title}', line_dash = 'dash')
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
     title = 'Volatility',
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
-    legend=dict( x=0.87,  y=0.98, title = None, borderwidth = 0.3)
+    legend=dict( x=0.75,  y=0.98, title = None, borderwidth = 0.3)
     )
 
     return fig
