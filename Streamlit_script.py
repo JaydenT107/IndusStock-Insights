@@ -256,7 +256,7 @@ def second_part():
     with col1:
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
-        date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format)::], selection_mode = 'single', default = '3 Months')
+        date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format)::], selection_mode = 'single', default = date_list[date_list.index(date_format)+1])
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()}</span></h1>", unsafe_allow_html=True)
