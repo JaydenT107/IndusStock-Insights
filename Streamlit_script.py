@@ -186,7 +186,7 @@ def scatter_plot(data,name,sday,eday,date_format, date_format_2,new_title=None):
 
     return fig
 
-def volatility_chart(data,name,sday,eday,date_format,new_title=None):
+def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=None):
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
 
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
