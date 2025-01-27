@@ -209,7 +209,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Avg')
     fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Avg Volatility: {relative_title}', line_dash = 'dash')
-    fig.add_shape(type = 'rect',y0 = 0 , x0 = filtered_data_2.iloc[-1]['Date'] , x1 = filtered_data_2.iloc[0]['Date'], y1 = filtered_data_2['Volatility'].max())
+    fig.add_shape(type = 'rect',y0 = 0 , x0 = filtered_data_2.iloc[-1]['Date'] , x1 = filtered_data_2.iloc[1]['Date'], y1 = filtered_data_2['Volatility'].max())
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
