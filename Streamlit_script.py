@@ -120,7 +120,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
-    xaxis = dict(tickformat = date_format_func(date_format_2))
+    xaxis = dict(tickformat = date_format_func(date_format))
 )
     if add_trendline == True:
         relative_date,relative_title= date_format_func2(date_format_2)
@@ -144,7 +144,7 @@ def scatter_plot(data,name,sday,eday,date_format,new_title=None):
 
     data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
     filtered_data = data[(data['Date'] >= sday) & (data['Date'] <= eday)]
-    relative_date,relative_title = date_format_func2(date_format)
+    relative_date,relative_title = date_format_func2(date_format_2)
     filtered_data['Highlight'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),relative_title, 'Older')
     filtered_data['Volume_Period'] = np.where(filtered_data['Date'] >= (datetime.today()-relative_date),filtered_data['Volume'], np.nan)
 
@@ -232,14 +232,14 @@ def first_part():
         
         for i in range(0,2):
             st.write(" ")
-            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0],use_container_width = False, config = {'displayModeBar' : False})
+            st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format,date_format_2 = None )[0],use_container_width = False, config = {'displayModeBar' : False})
             
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
         st.write(" ")
-        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})  
+        st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})  
 
     with col3:
         for i in range(2,5):
@@ -247,7 +247,7 @@ def first_part():
                 continue
             else:
                 st.write(" ")
-                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format)[0], use_container_width = False, config = {'displayModeBar' : False})
+                st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
 def second_part():
