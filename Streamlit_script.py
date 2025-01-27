@@ -128,6 +128,10 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         relative_date,relative_title= date_format_func2(date_format_2)
         filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
         line_color_2 = check_color(filtered_data_2)
+        line_start_high = filtered_data_2.iloc[0]['High']
+        line_end_high = filtered_data_2.iloc[-1]['High']
+        line_start_low = filtered_data_2.iloc[0]['Low']
+        line_end_low = filtered_data_2.iloc[-1]['Low']
         line_start_date = filtered_data_2.iloc[0]['Date']
         line_start_value = filtered_data_2.iloc[0]['Close']
         line_end_date = filtered_data_2.iloc[-1]['Date']
@@ -135,6 +139,8 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         random_ax1 = random.randint(-50,50)
         random_ax2 = random.randint(-50,50)
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_high, x1 = line_end_date, y1 = line_end_high, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_low, x1 = line_end_date, y1 = line_end_low, line = dict(color = line_color_2, width = 2, dash = 'dash'))
         fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
         fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax2 , ay = random_ax1, borderwidth = 0.1, arrowcolor = 'yellow')
     
