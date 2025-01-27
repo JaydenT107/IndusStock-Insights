@@ -263,6 +263,7 @@ def second_part():
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
         except IndexError:
             date_format_2 = '1 Week'
+        st.write(date_format_2)
         data = output_data[name.index(stock_name)]
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()}</span></h1>", unsafe_allow_html=True)
