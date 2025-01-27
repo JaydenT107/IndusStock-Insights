@@ -189,7 +189,8 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     fig.update_layout(
     dragmode = False,
     title = 'Volatility',
-    title_font=dict(size=24, family='Soin Sans Pro', color='white')
+    title_font=dict(size=24, family='Soin Sans Pro', color='white'),
+    legend=dict( x=0.75,  y=0.98, title = None, borderwidth = 0.3)
     )
 
     return fig
