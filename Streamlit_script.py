@@ -194,6 +194,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
     relative_date,relative_title= date_format_func2(date_format_2)
 
     filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
+
     filtered_data['Volatility'] = filtered_data['High'] - filtered_data['Low']
     filtered_data_2['Volatility'] = filtered_data_2['High'] - filtered_data_2['Low']
 
@@ -206,8 +207,9 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting')
 
-    fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
-    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Average: {relative_title}', line_dash = 'dash')
+    fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Avg')
+    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Avg Volatility: {relative_title}', line_dash = 'dash')
+    fig.add_shape(type = 'rect',y0 = 0 , x0 = filtered_data_2.iloc[-1]['Date'] , x1 = filtered_data_2.iloc[0]['Date'], y1 = filtered_data_2.iloc[0]['Volatility'])
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
