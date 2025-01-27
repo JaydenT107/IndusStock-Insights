@@ -185,7 +185,7 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting', color_discrete_map = {'Higher' : 'red' , 'Lower' : 'green'})
 
-    fig.add_hline(y = average, line_color = 'yellow', showlegend = True)
+    fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
