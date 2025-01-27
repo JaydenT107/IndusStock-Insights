@@ -138,7 +138,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         line_end_value = filtered_data_2.iloc[-1]['Close']
         random_ax1 = random.randint(-50,50)
         random_ax2 = random.randint(-50,50)
-        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash', fill = 'toself'))
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_high, x1 = line_end_date, y1 = line_end_high, line = dict(color = 'yellow', width = 2, dash = 'dash'))
         fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_low, x1 = line_end_date, y1 = line_end_low, line = dict(color = 'yellow', width = 2, dash = 'dash'))
         fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
