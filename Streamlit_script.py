@@ -201,13 +201,13 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
     average = filtered_data['Volatility'].mean()
 
     
-    avg_line_color = check_average(average,average_period)
+    avg_line_color = check_average(average_period,average)
 
     filtered_data['Sorting'] = np.where(filtered_data['Volatility'] > average, 'Higher' , 'Lower')
     fig = px.bar(filtered_data, x = 'Date', y = 'Volatility', color = 'Sorting')
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True, name = 'Average')
-    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = 'Average')
+    fig.add_hline(y = average_period, line_color = avg_line_color, showlegend = True, name = f'Average: {relative_title}')
     fig.update_layout(
     barmode = 'stack',
     dragmode = False,
