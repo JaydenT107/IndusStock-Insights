@@ -187,7 +187,7 @@ def volatility_chart(data,name,sday,eday,date_format,new_title=None):
 
     fig.add_hline(y = average, line_color = 'yellow', showlegend = True)
     fig.update_layout(
-    barmode = 'stack'
+    barmode = 'stack',
     dragmode = False,
     title = 'Volatility',
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
