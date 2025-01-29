@@ -252,7 +252,7 @@ def first_part():
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-    _,Date_title,AI_description = General_AI_description.split("**")
+    Date_title,AI_description = General_AI_description.split(":")
     
     with col2:
         
