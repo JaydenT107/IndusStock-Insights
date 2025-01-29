@@ -248,11 +248,12 @@ def first_part():
     col1, col2, col3 = st.columns([3,3,3])
     st.markdown("""<style>.fixed-height {height: 325px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
-    data,name,sector,AI_description, sday,eday, date_format = get_data()
+    data,name,sector,General_AI_description, sday,eday, date_format = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-
+    Date_title, AI_description = General_AI_description.split("**")
+    st.write(Date_title)
     with col2:
         
         for i in range(0,2):
