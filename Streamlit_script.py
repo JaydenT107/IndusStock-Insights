@@ -277,7 +277,7 @@ def first_part():
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
-def second_part():
+def second_part(s3 = s3client):
     name,output_data,sday,eday,date_format  = first_part()
 
     Volatility_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Volatility_AI_analysis.txt')
