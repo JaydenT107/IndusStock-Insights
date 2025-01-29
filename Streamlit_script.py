@@ -252,7 +252,7 @@ def first_part():
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-    Date_title,AI_description = General_AI_description.split(":")
+    _,Date_title,AI_description = General_AI_description.split("**")
     
     with col2:
         
@@ -278,13 +278,19 @@ def first_part():
     return name,data,sday,eday,date_format 
 
 def second_part():
-    
     name,output_data,sday,eday,date_format  = first_part()
+
+    Volatility_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Volatility_AI_analysis.txt')
+    VAI_description = Volatility_response['Body'].read().decode('utf-8').split(" \n ")
+    
+    
+    
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
+        VAI_description = VAI_description[name.index(stock_name)]
         date_format_copy = date_format[:]
         try:
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
@@ -296,4 +302,7 @@ def second_part():
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
+
+    with col2:
+        st.write(VAI_description)
 second_part()
