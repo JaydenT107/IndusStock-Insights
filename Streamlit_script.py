@@ -25,30 +25,31 @@ def date_selectbox():
     end_date = datetime.now()
     period = st.segmented_control('**Select Time Period**', ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week'], selection_mode = 'single', default = '3 Months')
 
-    if period == '3 Months':
 
-        start_date = end_date - relativedelta(months=3)
-        return start_date,end_date,'3_Months_AI_analysis.txt', '3 Months'
+    if period == '1 Week':
+
+        start_date = end_date - relativedelta(weeks=1)
+        return start_date,end_date, 0 , '1 Week'
 
     elif period == '1 Month':
 
         start_date = end_date - relativedelta(months=1)
-        return start_date,end_date, 'Monthly_AI_analysis.txt', '1 Month'
+        return start_date,end_date, 1 , '1 Months'
 
-    elif period == '1 Week':
+    elif period == '3 Months':
 
-        start_date = end_date - relativedelta(weeks=1)
-        return start_date,end_date, 'Weekly_AI_analysis.txt', '1 Week'
+        start_date = end_date - relativedelta(months=3)
+        return start_date,end_date, 2 , '3 Month'
 
     elif period == '6 Months':
 
         start_date = end_date - relativedelta(months = 6)
-        return start_date,end_date, '6_Months_AI_analysis.txt', '6 Months'
+        return start_date,end_date, 3, '6 Months'
 
     elif period == '1 Year':
 
         start_date = end_date - relativedelta(years=1)
-        return start_date,end_date, '1_Year_AI_analysis.txt', '1 Year'
+        return start_date,end_date, 4 , '1 Year'
 
     
 
@@ -71,26 +72,28 @@ def get_sector_func(s3 = s3client):
 
 sector = get_sector_func()
 
-gsday, geday , gAI_description_txt, gdate_format = date_selectbox()
+gsday, geday , period_index , gdate_format = date_selectbox()
 
-def get_data(sday = gsday, eday = geday, AI_description_txt = gAI_description_txt, date_format = gdate_format, sector = sector, s3 = s3client):
+def get_data(sday = gsday, eday = geday, period_index = period_index, date_format = gdate_format, sector = sector, s3 = s3client):
 
     tables = []
-    names = []
+    names_list = []
     
-    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/AI_Description/{AI_description_txt}')
+    data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Close_AI_analysis.txt')
     AI_description = data_response['Body'].read().decode('utf-8')
+    Display_AI_description = AI_description.split('\n')[period_index]
 
+    name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/name.txt')
+    names = name_response['Body'].read().decode('utf-8')
+    names = names.split(', ')
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
-        data = data_response['Body'].read().decode('utf-8')
-        name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Name/stock_{num}_name.txt')
-        name = name_response['Body'].read().decode('utf-8')
+        data = data_response['Body'].read().decode('utf-8') 
        
         df = pd.read_csv(StringIO(data))
         tables.append(df)
-        names.append(name)
-    return [tables,names,sector, AI_description, sday,eday, date_format]
+        names_list.append(names[num-1])
+    return [tables,names,sector, Display_AI_description, sday,eday, date_format]
 
 
 
