@@ -82,15 +82,16 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Close_AI_analysis.txt')
     AI_description = data_response['Body'].read().decode('utf-8')
     Display_AI_description = AI_description.split('\n')[period_index]
-
+    st.write(Display_AI_description)
     name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/name.txt')
     names = name_response['Body'].read().decode('utf-8')
     names = names.split(', ')
+
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
         data = data_response['Body'].read().decode('utf-8') 
-       
         df = pd.read_csv(StringIO(data))
+
         tables.append(df)
         names_list.append(names[num-1])
     return [tables,names,sector, Display_AI_description, sday,eday, date_format]
