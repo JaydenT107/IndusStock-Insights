@@ -311,6 +311,6 @@ def second_part(s3 = s3client):
     with col2:
         st.markdown(f"<h1 style='font-size: 250px; color: black ;'> | </h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 250px; color: black ;'> | <span style='color: black;'> </span></h1>", unsafe_allow_html=True)
-        st.markdown(f"<h1 style='font-size: 250px; color: black ;'> | <span style='color: black;'> </span></h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 270px; color: black ;'> | <span style='color: black;'> </span></h1>", unsafe_allow_html=True)
         st.write(VAI_description)
 second_part()
