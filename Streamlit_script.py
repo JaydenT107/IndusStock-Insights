@@ -34,12 +34,12 @@ def date_selectbox():
     elif period == '1 Month':
 
         start_date = end_date - relativedelta(months=1)
-        return start_date,end_date, 1 , '1 Months'
+        return start_date,end_date, 1 , '1 Month'
 
     elif period == '3 Months':
 
         start_date = end_date - relativedelta(months=3)
-        return start_date,end_date, 2 , '3 Month'
+        return start_date,end_date, 2 , '3 Months'
 
     elif period == '6 Months':
 
