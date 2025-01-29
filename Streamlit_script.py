@@ -252,8 +252,8 @@ def first_part():
     if "_" in sector:
         sector = sector.replace("_", " ")
             
-    Date_title = General_AI_description.split("**")
-    st.write(Date_title)
+    _,Date_title,AI_description = General_AI_description.split("**")
+    
     with col2:
         
         for i in range(0,2):
@@ -263,6 +263,7 @@ def first_part():
 
     with col1:
         st.markdown(f"<h1 style='font-size: 60px; color: white;'>{sector}</h1>", unsafe_allow_html=True)
+        st.markdown(f'**{Date_title}**')
         st.markdown(f"<div class='fixed-height'>{AI_description}</div>",unsafe_allow_html=True)
         st.write(" ")
         st.plotly_chart(line_chart(data[3],name[3],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})  
