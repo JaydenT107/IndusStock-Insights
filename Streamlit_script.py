@@ -93,7 +93,7 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
 
         tables.append(df)
         names_list.append(names[num-1])
-    return [tables,names,sector, Display_AI_description, sday,eday, date_format]
+    return [tables,names_list,sector, Display_AI_description, sday,eday, date_format]
 
 
 
