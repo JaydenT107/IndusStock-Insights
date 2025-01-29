@@ -281,7 +281,7 @@ def second_part(s3 = s3client):
     name,output_data,sday,eday,date_format  = first_part()
 
     Volatility_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Volatility_AI_analysis.txt')
-    VAI_description = Volatility_response['Body'].read().decode('utf-8').split("\n\n")
+    VAI_description = Volatility_response['Body'].read().decode('utf-8').split("\n\n\n")
     
     
     
