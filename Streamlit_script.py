@@ -82,7 +82,6 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Close_AI_analysis.txt')
     AI_description = data_response['Body'].read().decode('utf-8')
     Display_AI_description = AI_description.split('\n\n')[period_index]
-    st.write(Display_AI_description)
     name_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/name.txt')
     names = name_response['Body'].read().decode('utf-8')
     names = names.split(', ')
