@@ -319,6 +319,10 @@ def second_part(s3 = s3client):
         
         
         
+        
+        
+        
+        
         """)
         st.write(VAI_description)
 second_part()
