@@ -302,10 +302,13 @@ def second_part(s3 = s3client, sector = sector):
         
         if '-' in list(close_description):
             word = close_description.split(" ")
-            word.insert(2, 'decrease by')
+            word[4].replace('-', '')
+            word.insert(3, 'decrease by')
             f_close_description = " ".join(word)
         else:
-            close_description = close_description[0:16] + 'increase by ' + close_description[16::]
+            word = close_description.split(" ")
+            word.insert(3, 'increase by')
+            f_close_description = " ".join(word)
 
         st.write(f_close_description)
 
