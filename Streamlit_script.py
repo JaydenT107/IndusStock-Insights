@@ -304,7 +304,7 @@ def second_part(s3 = s3client):
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
         except IndexError:
             date_format_2 = '1 Week'
-        VAI_description = VAI_description[name.index(stock_name)].split('\n\n')[date_list.index(date_format_2)]
+        VAI_description = VAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
