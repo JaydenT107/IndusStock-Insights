@@ -291,14 +291,15 @@ def second_part(s3 = s3client, sector = sector):
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
-        close_description = close_data[f'{stock_name}']
-        st.write(close_description)
 
         date_format_copy = date_format[:]
         try:
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
         except IndexError:
             date_format_2 = '1 Week'
+
+        close_description = close_data[f'{stock_name}'][date_list.index(date_format_2)]
+        st.write(close_description)
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
