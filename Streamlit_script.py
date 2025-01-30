@@ -321,7 +321,7 @@ def second_part(s3 = s3client, sector = sector):
                 word = close_description.split(" ")
                 word.insert(3, 'increase by')
                 return word
-        f_close_description = cleaned_function(close_data)
+        f_close_description = cleaned_function(close_description)
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()} vs. {date_format_2}</span></h1>", unsafe_allow_html=True)
