@@ -290,7 +290,7 @@ def second_part(s3 = s3client, sector = sector):
     volume_data = json.loads(volume_data)
 
     volatility_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/volatility_description.json')
-    volatility_data = volume_response['Body'].read().decode('utf-8')
+    volatility_data = volatility_response['Body'].read().decode('utf-8')
     volatility_data = json.loads(volatility_data)
 
     st.header('Explore Stock Details')
