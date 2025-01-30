@@ -280,7 +280,7 @@ def first_part():
 def second_part(s3 = s3client, sector = sector):
     name,output_data,sday,eday,date_format  = first_part()
 
-    close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.txt')
+    close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.json')
     close_data = close_response['Body'].read().decode('utf-8')
     
 
