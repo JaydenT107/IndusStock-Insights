@@ -316,6 +316,7 @@ def second_part(s3 = s3client, sector = sector):
                 word.insert(4,word[3].replace('-', ''))
                 word.remove(word[3])
                 word.insert(3, 'decrease by')
+                st.write(word)
                 f_close_description = " ".join(word)
                 return f_close_description
             else:
