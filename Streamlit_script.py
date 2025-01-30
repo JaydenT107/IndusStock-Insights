@@ -305,7 +305,7 @@ def second_part(s3 = s3client):
         except IndexError:
             date_format_2 = '1 Week'
         VAI_description = VAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
-        CAI_description = CAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2))]
+        CAI_description = CAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
