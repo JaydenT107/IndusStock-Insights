@@ -312,12 +312,12 @@ def second_part(s3 = s3client, sector = sector):
                 word.remove(word[3])
                 word.insert(3, 'decrease by')
                 f_close_description = " ".join(word)
-                return f_close_description
+                return "            " + f_close_description
             else:
                 word = close_description.split(" ")
                 word.insert(3, 'increase by')
                 f_close_description = " ".join(word)
-                return f_close_description
+                return "            " + f_close_description
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
