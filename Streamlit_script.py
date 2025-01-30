@@ -278,17 +278,6 @@ def first_part():
     return name,data,sday,eday,date_format 
 
 def second_part(s3 = s3client):
-    name,output_data,sday,eday,date_format  = first_part()
-
-    Volatility_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Volatility_AI_analysis.txt')
-    VAI_description = Volatility_response['Body'].read().decode('utf-8').split("\n\n\n")
-
-    Volume_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Volume_AI_analysis.txt')
-    VoAI_description = Volume_response['Body'].read().decode('utf-8').split("\n\n\n")
-
-    Close_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Close_AI_analysis.txt')
-    CAI_description = Close_response['Body'].read().decode('utf-8').split("\n\n\n")
-    
     
     
     st.header('Explore Stock Details')
@@ -304,17 +293,12 @@ def second_part(s3 = s3client):
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
         except IndexError:
             date_format_2 = '1 Week'
-        VAI_description = VAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
-        CAI_description = CAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
-        VoAI_description = VoAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()} vs. {date_format_2}</span></h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
-        st.write(CAI_description)
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
-        st.write(VAI_description)
     with col2:
         st.markdown(f"<h1 style='font-size: 100px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 110px; color:black ;'>|</h1>", unsafe_allow_html=True)
