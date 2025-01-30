@@ -301,9 +301,9 @@ def second_part(s3 = s3client, sector = sector):
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
         
         if '-' in close_description.split():
-            close_description = close_description[0:13] + 'decrease by' + close_description[13::]
+            close_description = close_description[0:16] + 'decrease by' + close_description[16::]
         else:
-            close_description = close_description[0:13] + 'increase by' + close_description[13::]
+            close_description = close_description[0:16] + 'increase by' + close_description[16::]
 
         st.write(close_description)
 
