@@ -289,6 +289,10 @@ def second_part(s3 = s3client, sector = sector):
     volume_data = volume_response['Body'].read().decode('utf-8')
     volume_data = json.loads(volume_data)
 
+    volatility_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/volatility_description.json')
+    volatility_data = volume_response['Body'].read().decode('utf-8')
+    volatility_data = json.loads(volatility_data)
+
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
@@ -304,6 +308,7 @@ def second_part(s3 = s3client, sector = sector):
 
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
         volume_description = volume_data[f'{stock_name}'][cdate_list.index(date_format_2)+1]
+        volatility_description = volatility[f'{stock_name}'][cdate_list.index(date_format_2)+1]
         
         def cleaned_function(close_description):
             if '-' in list(close_description):
@@ -312,23 +317,23 @@ def second_part(s3 = s3client, sector = sector):
                 word.remove(word[3])
                 word.insert(3, 'decrease by')
                 f_close_description = " ".join(word)
-                return "            " + f_close_description
+                return f_close_description
             else:
                 word = close_description.split(" ")
                 word.insert(3, 'increase by')
                 f_close_description = " ".join(word)
-                return "            " + f_close_description
+                return f_close_description
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()} vs. {date_format_2}</span></h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
-        st.markdown(f"<h1 style='font-size: 15px; color:white ;'> {cleaned_function(close_description)} </h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 20px; color:white ;'> {cleaned_function(close_description)} </h1>", unsafe_allow_html=True)
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
-        st.markdown(f"<h1 style='font-size: 15px; color:white ;'>            {volume_description} </h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 20px; color:white ;'> {volume_description} </h1>", unsafe_allow_html=True)
     with col2:
         st.markdown(f"<h1 style='font-size: 100px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 110px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
-       
+        st.markdown(f"<h1 style='font-size: 20px; color:white ;'> {volatility_description} </h1>", unsafe_allow_html=True)
 second_part()
