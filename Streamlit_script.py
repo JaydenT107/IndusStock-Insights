@@ -306,6 +306,7 @@ def second_part(s3 = s3client):
             date_format_2 = '1 Week'
         VAI_description = VAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
         CAI_description = CAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
+        VoAI_description = VoAI_description[name.index(stock_name)].split('\n\n')[-(date_list.index(date_format_2)+1)]
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
@@ -318,4 +319,5 @@ def second_part(s3 = s3client):
         st.markdown(f"<h1 style='font-size: 100px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 122px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
+        st.write(VoAI_description)
 second_part()
