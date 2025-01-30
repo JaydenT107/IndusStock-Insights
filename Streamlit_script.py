@@ -7,6 +7,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
 import random 
+import json
 s3client = boto3.client(
     's3',
     aws_access_key_id=st.secrets["AWS_ACCESS_KEY_ID"],
@@ -282,7 +283,7 @@ def second_part(s3 = s3client, sector = sector):
 
     close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.json')
     close_data = close_response['Body'].read().decode('utf-8')
-    
+    close_data = json.loads(close_data)
 
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
