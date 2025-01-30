@@ -280,15 +280,17 @@ def first_part():
 def second_part(s3 = s3client):
     name,output_data,sday,eday,date_format  = first_part()
 
-    
+    close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.txt')
+    close_data = close_response['Body'].read().decode['utf-8']
+
     st.header('Explore Stock Details')
     col1,col2 = st.columns(2)
     with col1:
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
-        
-
+        close_description = close_data[stock_name]
+        st.write(close_description)[0]
         date_format_copy = date_format[:]
         try:
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
