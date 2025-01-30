@@ -301,11 +301,13 @@ def second_part(s3 = s3client, sector = sector):
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
         
         if '-' in list(close_description):
-            close_description = " ".join(close_description.split(" ").insert(2, 'decrease by '))
+            word = close_description.split(" ")
+            word.insert(2, 'decrease by')
+            F_close_description = " ".join(word)
         else:
             close_description = close_description[0:16] + 'increase by ' + close_description[16::]
 
-        st.write(close_description)
+        st.write(f_close_description)
 
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
