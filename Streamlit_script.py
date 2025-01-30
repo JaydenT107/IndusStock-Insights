@@ -292,7 +292,7 @@ def second_part(s3 = s3client, sector = sector):
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
         close_description = close_data[f'{stock_name}']
-        st.write(close_description)[0]
+        st.write(close_description)
 
         date_format_copy = date_format[:]
         try:
