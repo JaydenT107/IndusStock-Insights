@@ -299,8 +299,14 @@ def second_part(s3 = s3client, sector = sector):
             date_format_2 = '1 Week'
 
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
-        st.write(close_description)
+        
+        if '-' in close_description.split():
+            close_description = close_description[0:2] + 'decrease by' + close_description[2::]
+        else:
+            close_description = close_description[0:2] + 'increase by' + close_description[2::]
 
+        st.write(close_description)
+        
         data = output_data[name.index(stock_name)] 
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()} vs. {date_format_2}</span></h1>", unsafe_allow_html=True)
