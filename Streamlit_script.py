@@ -302,7 +302,7 @@ def second_part(s3 = s3client, sector = sector):
         
         if '-' in list(close_description):
             word = close_description.split(" ")
-            word[4].replace('-', '')
+            word.insert(4,word[4].replace('-', ''))
             word.insert(3, 'decrease by')
             f_close_description = " ".join(word)
         else:
