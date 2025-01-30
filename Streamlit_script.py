@@ -289,7 +289,7 @@ def second_part(s3 = s3client, sector = sector):
     col1,col2 = st.columns(2)
     with col1:
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
-        cdate_list = date_list.copy().reverse()
+        cdate_list = reverse(date_list.copy())
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
 
