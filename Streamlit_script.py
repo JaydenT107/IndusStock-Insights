@@ -303,7 +303,7 @@ def second_part(s3 = s3client, sector = sector):
             date_format_2 = '1 Week'
 
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
-        volume_description = volume_data[f'{stock_name}'][cdate_list.index(date_format_2)]
+        volume_description = volume_data[f'{stock_name}'][cdate_list.index(date_format_2)+1]
         
         def cleaned_function(close_description):
             if '-' in list(close_description):
