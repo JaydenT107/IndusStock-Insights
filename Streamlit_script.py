@@ -308,7 +308,7 @@ def second_part(s3 = s3client, sector = sector):
 
         close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
         volume_description = volume_data[f'{stock_name}'][cdate_list.index(date_format_2)+1]
-        volatility_description = volatility[f'{stock_name}'][cdate_list.index(date_format_2)+1]
+        volatility_description = volatility_data[f'{stock_name}'][cdate_list.index(date_format_2)+1]
         
         def cleaned_function(close_description):
             if '-' in list(close_description):
