@@ -289,8 +289,9 @@ def second_part(s3 = s3client):
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
-        close_description = close_data[stock_name]
+        close_description = close_data[f'{stock_name}']
         st.write(close_description)[0]
+
         date_format_copy = date_format[:]
         try:
             date_format_2 = st.segmented_control('**Select Time Period**', date_list[date_list.index(date_format_copy)+1::], selection_mode = 'single', default = date_list[date_list.index(date_format_copy)+1])
