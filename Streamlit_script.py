@@ -325,7 +325,7 @@ def second_part(s3 = s3client, sector = sector):
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
         st.write(cleaned_function(close_description))
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
-        st.markdown(f"<h1 style='font-size: 20px; color:white ;'> olume_description </h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 20px; color:white ;'> {volume_description} </h1>", unsafe_allow_html=True)
     with col2:
         st.markdown(f"<h1 style='font-size: 100px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 110px; color:black ;'>|</h1>", unsafe_allow_html=True)
