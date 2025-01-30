@@ -289,6 +289,7 @@ def second_part(s3 = s3client, sector = sector):
     col1,col2 = st.columns(2)
     with col1:
         date_list = ['1 Year', '6 Months', '3 Months', '1 Month', '1 Week']
+        cdate_list = date_list.copy().reverse()
         stock_name = st.selectbox('Select a Stock for Detailed Analysis',name)
 
 
@@ -298,7 +299,7 @@ def second_part(s3 = s3client, sector = sector):
         except IndexError:
             date_format_2 = '1 Week'
 
-        close_description = close_data[f'{stock_name}'][date_list.index(date_format_2)]
+        close_description = close_data[f'{stock_name}'][cdate_list.index(date_format_2)]
         st.write(close_description)
 
         data = output_data[name.index(stock_name)] 
