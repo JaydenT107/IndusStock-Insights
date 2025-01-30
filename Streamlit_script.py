@@ -277,7 +277,7 @@ def first_part():
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})
     return name,data,sday,eday,date_format 
 
-def second_part(s3 = s3client):
+def second_part(s3 = s3client, sector = sector):
     name,output_data,sday,eday,date_format  = first_part()
 
     close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.txt')
