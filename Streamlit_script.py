@@ -329,17 +329,17 @@ def second_part(s3 = s3client, sector = sector):
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>" f"<span style='color: yellow;'>{f_close_description[0]}</span> "  f"{' '.join(f_close_description[1:3])} "  f"<span style='color: yellow;'>{f_close_description[3]} {f_close_description[4]} {f_close_description[5]}</span> " f"{' '.join(f_close_description[6:])}</h1>",  unsafe_allow_html=True)
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
-            f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
+            f"<span style='color: yellow;'>{volatility_description.split(" ")[0]}</span> "
             f"stock average volatility over the past month: "
-            f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
+            f"<span style='color: yellow;'>{volatility_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
     with col2:
         st.markdown(f"<h1 style='font-size: 100px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 110px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
-            f"<span style='color: yellow;'>{volatility_description.split(" ")[0]}</span> "
+            f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
             f"stock average volatility over the past month: "
-            f"<span style='color: yellow;'>{volatility_description.split(" ")[-1]}</span></h1>", 
+            f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
 second_part()
