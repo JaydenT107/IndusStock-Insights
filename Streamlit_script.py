@@ -262,8 +262,7 @@ def recommendation_chart(data, stock_name):
     title = f'{stock_name} latest recommendation',
     width = 600,
     height = 400,
-    title_font=dict(size=24, family='Soin Sans Pro', color='white'),
-    legend=dict( x=0,  y=0.98, title = None, borderwidth = 0.3, font = dict(size = 12),bgcolor="rgba(0,0,0,0)")
+    title_font=dict(size=24, family='Soin Sans Pro', color='white')
     )
     return fig
     
