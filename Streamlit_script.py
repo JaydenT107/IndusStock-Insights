@@ -144,7 +144,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
             title_x=0.5,            
             title_font=dict(size=24, family='Soin Sans Pro', color='white'),
             width = 600,
-            height = 400,
+            height = 500,
             xaxis = dict(tickformat = date_format_func(date_format)
         ))
         relative_date,relative_title= date_format_func2(date_format_2)
