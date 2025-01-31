@@ -257,6 +257,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
 def recommendation_chart(data, stock_name):
     
+    st.write(data)
     df_melted = data.melt(id_vars = ['period'], value_vars = ['Strong Buy','buy','hold','sell','Strong Sell'], var_name = 'Recommendation' , value_name = 'Count')
 
     color_board = {
