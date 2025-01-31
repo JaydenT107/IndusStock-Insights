@@ -3,6 +3,7 @@ import boto3
 from io import StringIO
 import pandas as pd
 import plotly.express as px
+import plotly.graph_object as go
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
@@ -129,6 +130,21 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
     xaxis = dict(tickformat = date_format_func(date_format))
 )
     if add_trendline == True:
+        fig2 = go.Figure(data = [go.Candlestick(
+            x = filtered_data['Date'],
+            open = filtered_data['Open'],
+            close = filtered_data['Close'],
+            high = filtered_data['High'],
+            low = filtered_data['Low']
+        )])
+        fig2.update_layout(
+            title=name ,  
+            title_x=0.5,            
+            title_font=dict(size=24, family='Soin Sans Pro', color='white'),
+            width = 600,
+            height = 400,
+            xaxis = dict(tickformat = date_format_func(date_format)
+        )
         relative_date,relative_title= date_format_func2(date_format_2)
         filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
         line_color_2 = check_color(filtered_data_2)
@@ -142,10 +158,10 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         line_end_value = filtered_data_2.iloc[-1]['Close']
         random_ax1 = random.randint(-50,50)
         random_ax2 = random.randint(-50,50)
-        fig.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
-        fig.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
-        fig.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax2 , ay = random_ax1, borderwidth = 0.1, arrowcolor = 'yellow')
-
+        fig2.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig2.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
+        fig2.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax2 , ay = random_ax1, borderwidth = 0.1, arrowcolor = 'yellow')
+        return [fig2,line_color]
 
     return [fig,line_color]
 
