@@ -103,8 +103,8 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
 
         recommendation = recommendation_response['Body'].read().decode('utf-8')
         rdf = pd.read_csv(StringIO(recommendation))
-        rdf['Strong Buy'] = rdf['StrongBuy']
-        rdf['Strong Sell'] = rdf['StrongSell']
+        rdf = rdf.rename(columns = {'StrongBuy' : 'Strong Buy'})
+        rdf = rdf.rename(columns = {'StrongSell' : 'Strong Sell'})
         recommendation_tables.append(rdf)
 
     return [tables,names_list,sector, Display_AI_description, sday,eday, date_format,recommendation_tables]
