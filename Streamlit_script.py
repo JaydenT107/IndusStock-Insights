@@ -277,7 +277,7 @@ def recommendation_chart(data, stock_name):
     height = 450,
     title_font=dict(size=24, family='Soin Sans Pro', color='white')
     )
-    return fig
+    return [fig, df_melted.iloc[0]['Recommendation']
     
 def date_format_func(data):
     if data == '3 Months' or data == '6 Months' or data == '1 Year':
@@ -400,5 +400,12 @@ def second_part(s3 = s3client, sector = sector):
             f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
         st.write(" ")
-        st.plotly_chart( recommendation_chart(recommendation_tables[name.index(f'{stock_name}')],stock_name),use_container_width = True, config = {'displayModeBar' : False})
+        recmd_chart, recmd_desc = recommendation_chart(recommendation_tables[name.index(f'{stock_name}')],stock_name)
+        st.plotly_chart( recmd_chart,use_container_width = True, config = {'displayModeBar' : False})
+        st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
+            f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
+            f"Recommendation"
+            f"<span style='color: yellow;'>{recmd_desc}</span></h1>", 
+            unsafe_allow_html=True)
+        
 second_part()
