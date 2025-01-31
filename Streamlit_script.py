@@ -277,7 +277,7 @@ def recommendation_chart(data, stock_name):
     height = 450,
     title_font=dict(size=24, family='Soin Sans Pro', color='white')
     )
-    return [fig, df_melted.iloc[0]['Recommendation']
+    return [fig, df_melted.iloc[0]['Recommendation']]
     
 def date_format_func(data):
     if data == '3 Months' or data == '6 Months' or data == '1 Year':
