@@ -103,8 +103,8 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
 
         recommendation = recommendation_response['Body'].read().decode('utf-8')
         rdf = pd.read_csv(StringIO(recommendation))
-        rdf = rdf.rename(columns = {'StrongBuy' : 'Strong Buy'}, inplace = True)
-        rdf = rdf.rename(columns = {'StrongSell' : 'Strong Sell'}, inplace = True)
+        rdf.rename(columns = {'StrongBuy' : 'Strong Buy'}, inplace = True)
+        rdf.rename(columns = {'StrongSell' : 'Strong Sell'}, inplace = True)
         recommendation_tables.append(rdf)
 
     return [tables,names_list,sector, Display_AI_description, sday,eday, date_format,recommendation_tables]
@@ -257,7 +257,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
 def recommendation_chart(data, stock_name):
     
-    st.write(data)
+    
     df_melted = data.melt(id_vars = ['period'], value_vars = ['Strong Buy','buy','hold','sell','Strong Sell'], var_name = 'Recommendation' , value_name = 'Count')
 
     color_board = {
