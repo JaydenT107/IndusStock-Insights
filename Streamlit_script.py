@@ -259,10 +259,10 @@ def recommendation_chart(data, stock_name):
     df_melted = data.melt(id_vars = ['period'], value_vars = ['strongBuy','buy','hold','sell','strongSell'], var_name = 'Recommendation' , value_name = 'Count')
 
     color_board = {
-        'strongBuy' : '#3aff00'
-        'buy' : '#a2f88d'
-        'hold': '#fcff25'
-        'sell': '#fa7575'
+        'strongBuy' : '#3aff00',
+        'buy' : '#a2f88d',
+        'hold': '#fcff25',
+        'sell': '#fa7575',
         'strongSell' : '#ff0000'
     }
 
