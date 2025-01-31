@@ -140,7 +140,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         fig2.update_layout(
             xaxis_rangeslider_visible = False,
             dragmode = False,
-            title= False,  
+            title= "",  
             title_x=0.5,            
             title_font=dict(size=24, family='Soin Sans Pro', color='white'),
             width = 600,
