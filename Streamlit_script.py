@@ -79,6 +79,7 @@ gsday, geday , period_index , gdate_format = date_selectbox()
 def get_data(sday = gsday, eday = geday, period_index = period_index, date_format = gdate_format, sector = sector, s3 = s3client):
 
     tables = []
+    recommendation_tables = []
     names_list = []
     
     data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/All_Close_AI_analysis.txt')
@@ -88,14 +89,24 @@ def get_data(sday = gsday, eday = geday, period_index = period_index, date_forma
     names = name_response['Body'].read().decode('utf-8')
     names = names.split(', ')
 
+
+
     for num in range(1,6):
         data_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Data/stock_{num}.csv')
+        recommendation_response = s3.get_object(Bucket='stocksectordata', Key=f'{sector}/Recommendation/stock_{num}.csv')
+
         data = data_response['Body'].read().decode('utf-8') 
         df = pd.read_csv(StringIO(data))
 
         tables.append(df)
         names_list.append(names[num-1])
-    return [tables,names_list,sector, Display_AI_description, sday,eday, date_format]
+
+        recommendation = recommendation_response['Body'].read().decode('utf-8')
+        rdf = pd.read_csv(StringIO(recommendation))
+
+        recommendation_tables.append(rdf)
+
+    return [tables,names_list,sector, Display_AI_description, sday,eday, date_format,recommendation_tables]
 
 
 
@@ -268,7 +279,7 @@ def first_part():
     col1, col2, col3 = st.columns([3,3,3])
     st.markdown("""<style>.fixed-height {height: 325px;  overflow: auto; }</style>""",unsafe_allow_html=True,)
    
-    data,name,sector,General_AI_description, sday,eday, date_format = get_data()
+    data,name,sector,General_AI_description, sday,eday, date_format, recommendation_tables = get_data()
     if "_" in sector:
         sector = sector.replace("_", " ")
             
@@ -295,10 +306,10 @@ def first_part():
             else:
                 st.write(" ")
                 st.plotly_chart(line_chart(data[i],name[i],sday,eday, date_format, date_format_2 = None)[0], use_container_width = False, config = {'displayModeBar' : False})
-    return name,data,sday,eday,date_format 
+    return name,data,sday,eday,date_format, recommendation_tables
 
 def second_part(s3 = s3client, sector = sector):
-    name,output_data,sday,eday,date_format  = first_part()
+    name,output_data,sday,eday,date_format,recommendation_tables  = first_part()
 
     close_response = s3.get_object(Bucket = 'stocksectordata' , Key = f'{sector}/close_description.json')
     close_data = close_response['Body'].read().decode('utf-8')
@@ -345,7 +356,7 @@ def second_part(s3 = s3client, sector = sector):
         st.markdown(f"<h1 style='font-size: 45px; color:#fffd7b ;'>{stock_name}</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 30px; color: white;'>Period: <span style='color: yellow;'>{date_format.title()} vs. {date_format_2}</span></h1>", unsafe_allow_html=True)
         st.plotly_chart(line_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, add_trendline = True, date_format_2 = date_format_2)[0], use_container_width = True, config = {'displayModeBar' : False})
-        st.markdown(f"<h1 style='font-size: 20px; color:white;'>" f"<span style='color: yellow;'>{f_close_description[0]}</span> "  f"{' '.join(f_close_description[1:3])} "  f"<span style='color: yellow;'>{f_close_description[3]} {f_close_description[4]} {f_close_description[5]}</span> " f" over the past {date_format_2.lower()}</h1>",  unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 20px; color:white;'>" f"<span style='color: yellow;'>{f_close_description[0]}</span> "  f"{' '.join(f_close_description[1:3])} "  f"<span style='color: yellow;'>{f_close_description[3]} {f_close_description[4]} {f_close_description[5]}</span> " f" over the past {date_format_2.lower()}.</h1>",  unsafe_allow_html=True)
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volatility_description.split(" ")[0]}</span> "
@@ -363,4 +374,5 @@ def second_part(s3 = s3client, sector = sector):
             f"stock average volatility over the past {date_format_2.lower()}: "
             f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
+        st.write(recommendation_tables)
 second_part()
