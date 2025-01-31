@@ -404,7 +404,7 @@ def second_part(s3 = s3client, sector = sector):
         st.plotly_chart( recmd_chart,use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
-            f"Recommendation"
+            f"Recommendation: "
             f"<span style='color: yellow;'>{recmd_desc}</span></h1>", 
             unsafe_allow_html=True)
         
