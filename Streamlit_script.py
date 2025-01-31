@@ -140,7 +140,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         fig2.update_layout(
             xaxis_rangeslider_visible = True,
             dragmode = False,
-            title= "",  
+            title= name,  
             title_x=0.5,            
             title_font=dict(size=24, family='Soin Sans Pro', color='white'),
             width = 600,
@@ -353,7 +353,7 @@ def second_part(s3 = s3client, sector = sector):
             unsafe_allow_html=True)
     with col2:
         st.markdown(f"<h1 style='font-size: 150px; color:black ;'>|</h1>", unsafe_allow_html=True)
-        st.markdown(f"<h1 style='font-size: 153px; color:black ;'>|</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 143px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
