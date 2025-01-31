@@ -138,7 +138,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
             low = filtered_data['Low']
         )])
         fig2.update_layout(
-            xaxis_rangeslider_visible = False,
+            xaxis_rangeslider_visible = True,
             dragmode = False,
             title= "",  
             title_x=0.5,            
