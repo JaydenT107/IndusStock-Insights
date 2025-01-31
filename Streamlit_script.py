@@ -256,7 +256,7 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
 def recommendation_chart(data, stock_name):
     df_melted = de.melt(id_vars = [period], valye_vars = ['strongBuy','buy','hold','sell','strongSell'], var_name = 'Recommendation' , value_name = 'Count')
-    fig = px.bar (df_melted, x = 'period' , y = 'count' , color = 'Recommendation', title = f'{stock_name} latest recommendation', labels = {'period' : 'Period' , 'Count' : 'Number of Recommendations'} , text_auto =True )
+    fig = px.bar(df_melted, x = 'period' , y = 'count' , color = 'Recommendation', title = f'{stock_name} latest recommendation', labels = {'period' : 'Period' , 'Count' : 'Number of Recommendations'} , text_auto =True )
     return fig
     
 def date_format_func(data):
