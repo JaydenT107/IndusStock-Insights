@@ -261,11 +261,11 @@ def recommendation_chart(data, stock_name):
     df_melted = data.melt(id_vars = ['period'], value_vars = ['Strong Buy','buy','hold','sell','Strong Sell'], var_name = 'Recommendation' , value_name = 'Count')
 
     color_board = {
-        'strongBuy' : '#3aff00',
+        'Strong Buy' : '#3aff00',
         'buy' : '#a2f88d',
         'hold': '#fcff25',
         'sell': '#fa7575',
-        'strongSell' : '#ff0000'
+        'Strong Sell' : '#ff0000'
     }
     
     fig = px.bar(df_melted, x = 'period' , y = 'Count' , color = 'Recommendation', title = f'{stock_name} latest recommendation', labels = {'period' : 'Period' , 'Count' : 'Number of Recommendations'} , text_auto =True,color_discrete_map = color_board )
