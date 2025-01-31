@@ -261,7 +261,7 @@ def recommendation_chart(data, stock_name):
     dragmode = False,
     title = f'{stock_name} latest recommendation',
     width = 600,
-    height = 500,
+    height = 450,
     title_font=dict(size=24, family='Soin Sans Pro', color='white')
     )
     return fig
