@@ -349,7 +349,7 @@ def second_part(s3 = s3client, sector = sector):
         st.plotly_chart(volatility_chart(data,sday = sday,eday = eday, date_format = date_format, new_title = f'Price', name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volatility_description.split(" ")[0]}</span> "
-            f"stock average volatility over the past month: "
+            f"stock average volatility over the past {date_format_2}: "
             f"<span style='color: yellow;'>{volatility_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
     with col2:
@@ -360,7 +360,7 @@ def second_part(s3 = s3client, sector = sector):
         st.write(" ")  
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
-            f"stock average volatility over the past month: "
+            f"stock average volatility over the past {date_format_2}: "
             f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
 second_part()
