@@ -260,6 +260,8 @@ def recommendation_chart(data, stock_name):
     
     df_melted = data.melt(id_vars = ['period'], value_vars = ['Strong Buy','buy','hold','sell','Strong Sell'], var_name = 'Recommendation' , value_name = 'Count')
 
+    st.write(df_melted)
+    
     color_board = {
         'Strong Buy' : '#3aff00',
         'buy' : '#a2f88d',
@@ -402,6 +404,7 @@ def second_part(s3 = s3client, sector = sector):
         st.write(" ")
         recmd_chart, recmd_desc = recommendation_chart(recommendation_tables[name.index(f'{stock_name}')],stock_name)
         st.plotly_chart( recmd_chart,use_container_width = True, config = {'displayModeBar' : False})
+        st.write(" ")
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
             f"Recommendation: "
