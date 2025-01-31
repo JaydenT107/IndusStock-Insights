@@ -377,5 +377,5 @@ def second_part(s3 = s3client, sector = sector):
             f"stock average volatility over the past {date_format_2.lower()}: "
             f"<span style='color: yellow;'>{volume_description.split(" ")[-1]}</span></h1>", 
             unsafe_allow_html=True)
-        st.plotly_chart(recommendation_chart,stock_name)
+        st.plotly_chart( recommendation_chart(recommendation_tables[name.index(f'{stock_name}')],stock_name),use_container_width = True, config = {'displayModeBar' : False})
 second_part()
