@@ -260,8 +260,8 @@ def recommendation_chart(data, stock_name):
     
     df_melted = data.melt(id_vars = ['period'], value_vars = ['Strong Buy','buy','hold','sell','Strong Sell'], var_name = 'Recommendation' , value_name = 'Count')
 
-    st.write(df_melted)
-    
+    df_sorted = df_melted.sort_values(by=['period','Count'])
+
     color_board = {
         'Strong Buy' : '#3aff00',
         'buy' : '#a2f88d',
@@ -279,7 +279,7 @@ def recommendation_chart(data, stock_name):
     height = 450,
     title_font=dict(size=24, family='Soin Sans Pro', color='white')
     )
-    return [fig, df_melted.iloc[0]['Recommendation']]
+    return [fig, df_sorted.iloc[0]['Recommendation']]
     
 def date_format_func(data):
     if data == '3 Months' or data == '6 Months' or data == '1 Year':
