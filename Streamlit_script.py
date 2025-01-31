@@ -199,7 +199,8 @@ def scatter_plot(data,name,sday,eday,date_format, date_format_2,new_title=None):
     fig.update_xaxes(title = 'Price')
     fig.update_layout(
     dragmode = False,
-    title='Correlation Between Trading Volume and Closing Price',            
+    title='Correlation Between Trading Volume and Closing Price',  
+    title_x = 0.5,          
     title_font=dict(size=24, family='Soin Sans Pro', color='white'),
     width = 600,
     height = 400,
