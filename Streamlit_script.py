@@ -3,7 +3,7 @@ import boto3
 from io import StringIO
 import pandas as pd
 import plotly.express as px
-import plotly.graph_object as go
+import plotly.graph_objects as go
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
