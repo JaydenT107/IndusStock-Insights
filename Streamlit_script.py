@@ -254,7 +254,8 @@ def volatility_chart(data,name,sday,eday,date_format, date_format_2,new_title=No
 
     return fig
 
-def recommendation_chart(data)
+def recommendation_chart(data):
+    return None
 
 def date_format_func(data):
     if data == '3 Months' or data == '6 Months' or data == '1 Year':
