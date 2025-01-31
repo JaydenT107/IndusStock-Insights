@@ -355,7 +355,7 @@ def second_part(s3 = s3client, sector = sector):
         st.markdown(f"<h1 style='font-size: 150px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 115px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.plotly_chart(scatter_plot(data,sday = sday,eday = eday, date_format = date_format, new_title = None , name = None, date_format_2 = date_format_2), use_container_width = True, config = {'displayModeBar' : False})
-        st.markdown(f"<h1 style='font-size: 10px; color:black ;'>|</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='font-size: 1px; color:black ;'>|</h1>", unsafe_allow_html=True)
         st.markdown(f"<h1 style='font-size: 20px; color:white;'>"
             f"<span style='color: yellow;'>{volume_description.split(" ")[0]}</span> "
             f"stock average volatility over the past month: "
