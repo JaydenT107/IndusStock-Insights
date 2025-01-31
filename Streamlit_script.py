@@ -144,7 +144,7 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
             width = 600,
             height = 400,
             xaxis = dict(tickformat = date_format_func(date_format)
-        )
+        ))
         relative_date,relative_title= date_format_func2(date_format_2)
         filtered_data_2 = filtered_data[filtered_data['Date'] >= (datetime.today()-relative_date)]
         line_color_2 = check_color(filtered_data_2)
