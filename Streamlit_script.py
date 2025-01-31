@@ -265,7 +265,8 @@ def recommendation_chart(data, stock_name):
         'sell': '#fa7575',
         'strongSell' : '#ff0000'
     }
-
+    
+    st.write(df_melted)
     fig = px.bar(df_melted, x = 'period' , y = 'Count' , color = 'Recommendation', title = f'{stock_name} latest recommendation', labels = {'period' : 'Period' , 'Count' : 'Number of Recommendations'} , text_auto =True,color_discrete_map = color_board )
   
     fig.update_layout(
