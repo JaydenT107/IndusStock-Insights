@@ -161,6 +161,8 @@ def line_chart(data,name,sday,eday,date_format, date_format_2 ,new_title=None, a
         random_ax1 = random.randint(-50,50)
         random_ax2 = random.randint(-50,50)
         fig2.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_value, x1 = line_end_date, y1 = line_end_value, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig2.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_high, x1 = line_end_date, y1 = line_end_high, line = dict(color = line_color_2, width = 2, dash = 'dash'))
+        fig2.add_shape(type = 'line', x0 = line_start_date, y0 = line_start_low, x1 = line_end_date, y1 = line_end_low, line = dict(color = line_color_2, width = 2, dash = 'dash'))
         fig2.add_annotation(y = line_start_value, x = line_start_date, showarrow = True, text = f"{line_start_value}", ax = random_ax1 , ay = random_ax2, borderwidth = 0.1, arrowcolor = 'yellow')
         fig2.add_annotation(y = line_end_value, x = line_end_date, showarrow = True, text = f"{line_end_value}", ax = random_ax2 , ay = random_ax1, borderwidth = 0.1, arrowcolor = 'yellow')
         return [fig2,line_color]
